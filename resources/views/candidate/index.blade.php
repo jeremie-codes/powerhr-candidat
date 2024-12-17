@@ -181,7 +181,7 @@
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                         placeholder="Enter First Name" value="{{ Auth::user()->personne->prenom }}" required>
                                 </div>
-                                div class="mb-4">
+                                <div class="mb-4">
                                     <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Nom <span
                                             class="text-red-500">*</span></label>
                                     <input type="text" id="firstNameInput2"
@@ -200,14 +200,14 @@
                                             class="text-red-500">*</span></label>
                                     <input type="text" id="UsernameInput"
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        placeholder="{{ Auth::user()->personne->telephone }}" required>
+                                        value="{{ Auth::user()->personne->telephone }}" required>
                                 </div>
                                 <div class="mb-4">
                                     <label for="cityInput" class="inline-block mb-2 text-base font-medium">Email <span
                                             class="text-red-500">*</span></label>
                                     <input type="text" id="cityInput"
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        placeholder="{{ Auth::user()->email }}" required>
+                                        value="{{ Auth::user()->email }}" required>
                                 </div>
                                 <div class="mb-4">
                                     <label for="stateInput" class="inline-block mb-2 text-base font-medium">Experiences <span
@@ -228,7 +228,8 @@
                                             class="text-red-500">*</span></label>
                                     <input type="number" id="zipInput"
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        placeholder="Salary" required>
+
+                                        placeholder="Salary">
                                 </div>
                                 <div class="mb-4">
                                     <label for="stateInput" class="inline-block mb-2 text-base font-medium">Highest Qualification Held <span
