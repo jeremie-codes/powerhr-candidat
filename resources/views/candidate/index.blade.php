@@ -31,24 +31,21 @@
                                 {{ Auth::user()->name }} </p>
                         <p class="text-slate-500 dark:text-zink-200"><i data-lucide="map-pin"
                                 class="inline-block size-4 ltr:mr-1 rtl:ml-1 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-500"></i>
-                                {{ Auth::user()->name }} </p>
+                                {{ Auth::user()->profile->location }} </p>
                     </div>
                     
-                    <p class="mt-4 text-slate-500 dark:text-zink-200">Strong leader and negotiator adept at driving
-                        collaboration and innovation. Highly accomplished CEO & Founder with 10+ years of experience
-                        creating, launching and leading successful business ventures. Proven ability to build relationships,
-                        drive customer loyalty and increase profitability.</p>
+                    <p class="mt-4 text-slate-500 dark:text-zink-200">{{ Auth::user()->profile->bio }}</p>
                     <div class="flex gap-2 mt-4">
-                        <a href="#!"
+                        <a href="{{ Auth::user()->profile->twitter }}"
                             class="flex items-center justify-center transition-all duration-200 ease-linear rounded size-9 text-sky-500 bg-sky-100 hover:bg-sky-200 dark:bg-sky-500/20 dark:hover:bg-sky-500/30">
-                            <i data-lucide="facebook" class="size-4"></i>
+                            <i data-lucide="twitter" class="size-4"></i>
                         </a>
                         
-                        <a href="#!"
+                        <a href="{{ Auth::user()->profile->linkedin }}"
                             class="flex items-center justify-center transition-all duration-200 ease-linear rounded text-custom-500 bg-custom-100 size-9 hover:bg-custom-200 dark:bg-custom-500/20 dark:hover:bg-custom-500/30">
                             <i data-lucide="linkedin" class="size-4"></i>
                         </a>
-                        <a href="#!"
+                        <a href="{{ Auth::user()->profile->github }}"
                             class="flex items-center justify-center transition-all duration-200 ease-linear rounded size-9 text-slate-500 bg-slate-100 hover:bg-slate-200 dark:bg-zink-600 dark:hover:bg-zink-500">
                             <i data-lucide="github" class="size-4"></i>
                         </a>
@@ -121,17 +118,8 @@
                     </div><!--end grid-->
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="mb-3 text-15">Overview</h6>
-                            <p class="mb-2 text-slate-500 dark:text-zink-200">A Web Developer creates and designs different
-                                websites for clients. They are responsible for their aesthetic as well as their function.
-                                Professionals in this field may also need to be able to ensure sites are compatible with
-                                multiple types of media. Web Developers need to have a firm understanding of programming and
-                                graphical design. Having a strong resume that emphasizes these attributes makes it
-                                significantly easier to get hired as a Web Developer.</p>
-                            <p class="text-slate-500 dark:text-zink-200">As a web designer, my objective is to make a
-                                positive impact on clients, co-workers, and the Internet using my skills and experience to
-                                design compelling and attractive websites. Solving code problems. Editing & Design with
-                                designing team in the company to build perfect web designs.</p>
+                            <h6 class="mb-3 text-15">Biographie</h6>
+                            <p class="mb-2 text-slate-500 dark:text-zink-200">{{ Auth::user()->profile->bio }}</p>
                         </div>
                     </div>
                 </div><!--end col-->
@@ -144,36 +132,31 @@
                                     <tbody>
                                         <tr>
                                             <th class="py-2 font-semibold ps-0" scope="row">Designation</th>
-                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">CEO & Founder
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">{{ Auth::user()->profile->title }}
                                             </td>
                                         </tr>
                                         <tr>
                                             <th class="py-2 font-semibold ps-0" scope="row">Phone No</th>
-                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">617 219 6245</td>
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">{{ Auth::user()->personne->telephone }}</td>
                                         </tr>
                                         <tr>
                                             <th class="py-2 font-semibold ps-0" scope="row">Birth of Date</th>
-                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">15 Dec, 1998</td>
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">{{ Auth::user()->personne->dateNaissance }}</td>
                                         </tr>
                                         <tr>
                                             <th class="py-2 font-semibold ps-0" scope="row">Website</th>
                                             <td class="py-2 text-right text-slate-500 dark:text-zink-200"><a
-                                                    href="http://themesdesign.in/" target="_blank"
-                                                    class="text-custom-500">www.themesdesign.in</a></td>
+                                                    href="{{ Auth::user()->profile->website }}" target="_blank"
+                                                    class="text-custom-500">{{ Auth::user()->profile->website }}</a></td>
                                         </tr>
                                         <tr>
                                             <th class="py-2 font-semibold ps-0" scope="row">Email</th>
                                             <td class="py-2 text-right text-slate-500 dark:text-zink-200">
-                                                paula@themesdesign.com</td>
+                                                {{ Auth::user()->email }}</td>
                                         </tr>
                                         <tr>
                                             <th class="py-2 font-semibold ps-0" scope="row">Location</th>
-                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">Los Angeles,
-                                                California</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="pt-2 font-semibold ps-0" scope="row">Joining Date</th>
-                                            <td class="pt-2 text-right text-slate-500 dark:text-zink-200">01 July 2023</td>
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">{{ Auth::user()->profile->location }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -192,32 +175,39 @@
                         <form action="#!">
                             <div class="grid grid-cols-1 gap-x-5 md:grid-cols-2 xl:grid-cols-2">
                                 <div class="mb-4">
-                                    <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">First Name <span
+                                    <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Prenom <span
                                             class="text-red-500">*</span></label>
                                     <input type="text" id="firstNameInput2"
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        placeholder="Enter First Name" value="Sophia" required>
+                                        placeholder="Enter First Name" value="{{ Auth::user()->personne->prenom }}" required>
+                                </div>
+                                div class="mb-4">
+                                    <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Nom <span
+                                            class="text-red-500">*</span></label>
+                                    <input type="text" id="firstNameInput2"
+                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        placeholder="Enter First Name" value="{{ Auth::user()->personne->nom }}" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="lastNameInput2" class="inline-block mb-2 text-base font-medium">Last Name <span
+                                    <label for="lastNameInput2" class="inline-block mb-2 text-base font-medium">Postnom <span
                                             class="text-red-500">*</span></label>
                                     <input type="text" id="lastNameInput2"
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        placeholder="Enter Last Name" value="Bethany" required>
+                                        placeholder="Enter Last Name" value="{{ Auth::user()->personne->postNom }}" required>
                                 </div>
                                 <div class="mb-4">
                                     <label for="UsernameInput" class="inline-block mb-2 text-base font-medium">Mobile <span
                                             class="text-red-500">*</span></label>
                                     <input type="text" id="UsernameInput"
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        placeholder="Mobile" required>
+                                        placeholder="{{ Auth::user()->personne->telephone }}" required>
                                 </div>
                                 <div class="mb-4">
                                     <label for="cityInput" class="inline-block mb-2 text-base font-medium">Email <span
                                             class="text-red-500">*</span></label>
                                     <input type="text" id="cityInput"
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        placeholder="Email" required>
+                                        placeholder="{{ Auth::user()->email }}" required>
                                 </div>
                                 <div class="mb-4">
                                     <label for="stateInput" class="inline-block mb-2 text-base font-medium">Experiences <span

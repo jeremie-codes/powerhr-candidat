@@ -1,10 +1,7 @@
 <?php
 
-use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TailwickController;
-use App\Http\Controllers\Web\ClientController;
-use App\Http\Controllers\Web\JobController;
-use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\CandidateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,14 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
-    Route::get("/", [RouteController::class, 'index'])->name('dashboard');
-    Route::get("{any}", [RouteController::class, 'routes']);
-
-    Route::resource('customers', ClientController::class);
-    Route::resource('users', UserController::class)->only([
-        'index', 'show', 'destroy'
+    Route::resource('portal/candidate', CandidateController::class)->only([
+        'index', 'show', 'destroy', 'update'
     ]);
-    Route::resource('jobs', JobController::class);
 });
 
 
