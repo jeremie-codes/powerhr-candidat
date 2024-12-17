@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Personne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,19 +34,23 @@ class CandidateController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'SkillSet' => ['nullable'],
+            'HighestQualificationHeld' => ['nullable'],
+            'CurrentSalary' => ['nullable'],
+            'SchoolName' => ['nullable'],
+            'SchoolMajor' => ['nullable'],
+            'SchoolDegree' => ['nullable'],
+            'SchoolDuration' => ['nullable'],
+            'SchoolCurrentlyPursuing' => ['nullable'],
+            'ExperienceDetails' => ['nullable'],
+        ]);
+
+        Personne::create($request->validated());
     }
 
     /**

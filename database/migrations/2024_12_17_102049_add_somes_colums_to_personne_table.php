@@ -11,13 +11,33 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('personne', function (Blueprint $table) {
-            $table->text('two_factor_secret')
-                ->after('password')
+        Schema::table('personnes', function (Blueprint $table) {
+            $table->text('SkillSet')
+                ->after('matricule')
                 ->nullable();
 
-            $table->text('two_factor_recovery_codes')
-                ->after('two_factor_secret')
+            $table->text('HighestQualificationHeld')
+                ->after('SkillSet')
+                ->nullable();
+
+            $table->text('CurrentSalary')
+                ->after('HighestQualificationHeld')
+                ->nullable();
+
+            $table->text('AdditionalInformation')
+                ->after('CurrentSalary')
+                ->nullable();
+
+            $table->text('Street')
+                ->after('AdditionalInformation')
+                ->nullable();
+
+            $table->text('School')
+                ->after('Street')
+                ->nullable();
+
+            $table->text('ExperienceDetails')
+                ->after('School')
                 ->nullable();
         });
     }
@@ -27,13 +47,16 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('personnes', function (Blueprint $table) {
             $table->dropColumn(array_merge([
-                'two_factor_secret',
-                'two_factor_recovery_codes',
-            ], Fortify::confirmsTwoFactorAuthentication() ? [
-                'two_factor_confirmed_at',
-            ] : []));
+                'SkillSet',
+                'HighestQualificationHeld',
+                'CurrentSalary',
+                'AdditionalInformation',
+                'Street',
+                'School',
+                'ExperienceDetails',
+            ]));
         });
     }
 };
