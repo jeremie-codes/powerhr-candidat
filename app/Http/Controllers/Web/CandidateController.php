@@ -4,11 +4,22 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CandidateController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     /**
      * Display a listing of the resource.
      */
