@@ -12,12 +12,34 @@ class Personne extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'nom', 'postNom', 'prenom', 'dateNaissance', 'sexe', 'nationalite', 'adresse', 'codePostal', 'ville', 'telephone',
+        'nom',
+        'postNom',
+        'prenom',
+        'dateNaissance',
+        'sexe',
+        'nationalite',
+        'adresse',
+        'codePostal',
+        'ville',
+        'telephone',
         'user_id',
         'matricule',
+        'SkillSet',
+        'HighestQualificationHeld',
+        'CurrentSalary',
+        'AdditionalInformation',
+        'Street',
+        'School',
+        'ExperienceDetails',
     ];
 
-    public function user() : BelongsTo
+    protected $casts = [
+        'ExperienceDetails' => 'array',
+        'School' => 'array',
+        'SkillSet' => 'array',
+    ];
+
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

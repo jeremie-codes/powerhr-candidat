@@ -3,6 +3,7 @@
 use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\Web\CandidateController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RouteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('index/{locale}', [TailwickController::class, 'lang']);
+
+Route::get("/", [RouteController::class, 'index'])->name('dashboard');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     Route::resource('portal/candidate', CandidateController::class)->only([
