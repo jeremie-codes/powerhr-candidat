@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\TailwickController;
-use App\Http\Controllers\Web\CandidateController;
+use App\Http\Controllers\Web\EducationController;
+use App\Http\Controllers\Web\ExperienceController;
+use App\Http\Controllers\Web\ProfileController;
+use App\Http\Controllers\Web\ResumeController;
+use App\Http\Controllers\Web\SkillController;
+use App\Http\Controllers\Web\UserDetailController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RouteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +19,37 @@ use App\Http\Controllers\RouteController;
 |
 */
 
-Route::get('index/{locale}', [TailwickController::class, 'lang']);
-
-Route::get("/", [RouteController::class, 'index'])->name('dashboard');
-
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
-    Route::resource('portal/candidate', CandidateController::class)->only([
-        'index', 'show', 'destroy', 'update'
-    ]);
+Route::get('/', function () {
+    return view('candidate.main');
 });
 
+Route::get('/dashboard', function () {
+    return view('candidate.main');
 
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    // resource controller for user details
+    Route::resource('user-detail', UserDetailController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+
+    // resource controller for education
+    Route::resource('education', EducationController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+
+    // resource controller for experience
+    Route::resource('experience', ExperienceController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+
+    // resource controller for skill
+    Route::resource('skill', SkillController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+});
+
+Route::get('/resume', [ResumeController::class, 'index'])->name('resume.index')->middleware('auth');
+
+Route::get('/resume/download', [ResumeController::class, 'download'])->name('resume.download')->middleware('auth');
+
+require __DIR__ . '/auth.php';
