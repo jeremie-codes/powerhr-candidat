@@ -2,31 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-use zoparga\ReviewRateable\Contracts\ReviewRateable;
-use zoparga\ReviewRateable\Traits\ReviewRateable as ReviewRateableTrait;
 
-class User extends Authenticatable implements ReviewRateable
+class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use HasTeams;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
-    use ReviewRateableTrait;
-    use HasRoles, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -34,7 +18,9 @@ class User extends Authenticatable implements ReviewRateable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -45,8 +31,6 @@ class User extends Authenticatable implements ReviewRateable
     protected $hidden = [
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
     ];
 
     /**
@@ -58,32 +42,24 @@ class User extends Authenticatable implements ReviewRateable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
-
-    public function customer(): HasOne
+    public function education()
     {
-        return $this->hasOne(Client::class);
+        return $this->hasMany(Education::class);
     }
 
-    public function personne(): HasOne
+    public function experiences()
     {
-        return $this->hasOne(Personne::class);
+        return $this->hasMany(Experience::class);
     }
 
-    public function profile(): HasOne
-    {
-        return $this->hasOne(Profile::class);
-    }
-
-    public function skills(): HasMany
+    public function skills()
     {
         return $this->hasMany(Skill::class);
+    }
+
+    // write the userDetail class one user can have many user details
+    public function userDetail()
+    {
+        return $this->hasOne(UserDetail::class);
     }
 }

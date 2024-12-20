@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Personne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,10 +16,10 @@ class CandidateController extends Controller
      * @return void
      */
 
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -33,19 +34,33 @@ class CandidateController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' => ['nullable'],
+            'postNom' => ['nullable'],
+            'prenom' => ['nullable'],
+            'dateNaissance' => ['nullable'],
+            'sexe' => ['nullable'],
+            'nationalite' => ['nullable'],
+            'adresse' => ['nullable'],
+            'codePostal' => ['nullable'],
+            'ville' => ['nullable'],
+            'telephone' => ['nullable'],
+            'user_id' => ['nullable'],
+            'matricule' => ['nullable'],
+            'SkillSet' => ['nullable'],
+            'HighestQualificationHeld' => ['nullable'],
+            'CurrentSalary' => ['nullable'],
+            'AdditionalInformation' => ['nullable'],
+            'Street' => ['nullable'],
+            'School' => ['nullable'],
+            'ExperienceDetails' => ['nullable'],
+        ]);
+
+        Personne::create($request->validated());
     }
 
     /**
@@ -57,14 +72,6 @@ class CandidateController extends Controller
         return view('member.show', [
             'user' => $user
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
