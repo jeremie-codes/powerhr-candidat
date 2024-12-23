@@ -208,8 +208,8 @@
                 <div class="card">
                     <div class="card-body">
                         @if ($user->personne && $user->profile && $user->candidate)
-                        @csrf
                         <form action="{{route('candidate.store')}}" method="POST" class="create-form23">
+                            @csrf
                             <div class="grid grid-cols-1 gap-x-5 md:grid-cols-2 xl:grid-cols-2">
                                 <div class="mb-4">
                                     <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Prenom

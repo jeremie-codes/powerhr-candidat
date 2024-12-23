@@ -54,8 +54,8 @@ export default {
                 'vertical-menu-item-font-size':                         "0.875rem",
             },
             colors: {
-                'body':                                                 colors.slate[800],
-                'body-bg':                                              colors.slate[100],
+                'body':                                                 colors.primary[500],
+                'body-bg':                                              colors.secondary[500],
                 'body-bordered':                                        colors.white,
 
                 //sidebar light
@@ -129,6 +129,30 @@ export default {
                 'topbar-modern':                                          colors.white,
 
 
+                primary: {
+                    50: '#e6f6fc',
+                    100: '#ccedf8',
+                    200: '#99dbf2',
+                    300: '#66c9eb',
+                    400: '#33b7e5',
+                    500: '#29aae2', // Couleur principale
+                    600: '#1a8bb9',
+                    700: '#146887',
+                    800: '#0f4658',
+                    900: '#0a2329',
+                },
+                secondary: {
+                    50: '#ffe6e6',
+                    100: '#ffcccc',
+                    200: '#ff9999',
+                    300: '#ff6666',
+                    400: '#ff3333',
+                    500: '#e90004', // Couleur secondaire
+                    600: '#b30003',
+                    700: '#800002',
+                    800: '#4d0001',
+                    900: '#1a0000',
+                },
                 custom: {
                     50: colors.blue[50],
                     100: colors.blue[100],
