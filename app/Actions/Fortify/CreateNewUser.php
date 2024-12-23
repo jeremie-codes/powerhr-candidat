@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Candidates;
 use App\Models\Personne;
 use App\Models\Profile;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -43,29 +42,29 @@ class CreateNewUser implements CreatesNewUsers
                 Candidates::create(['user_id' => $user->id]);
 
                 Personne::create([
-                    'postNom' => '',
-                    'prenom' => '',
+                    'postNom' => 'Veuillez completer votre profil',
+                    'prenom' => 'Veuillez completer votre profil',
                     'dateNaissance' => '2007-02-25',
-                    'sexe' => '',
-                    'nationalite' => '',
-                    'adresse' => '',
-                    'codePostal' => '',
-                    'ville' => '',
-                    'telephone' => '',
-                    'nom' => '',
+                    'sexe' => 'Veuillez completer votre profil',
+                    'nationalite' => 'Veuillez completer votre profil',
+                    'adresse' => 'Veuillez completer votre profil',
+                    'codePostal' => 'Veuillez completer votre profil',
+                    'ville' => 'Veuillez completer votre profil',
+                    'telephone' => 'Veuillez completer votre profil',
+                    'nom' => 'Veuillez completer votre profil',
                     'user_id' => $user->id,
                     'matricule' => 'OFR' . rand(1000, 9999),
                 ]);
 
                 Profile::create([
-                    'title' => '',
-                    'bio' => '',
-                    'location' => '',
+                    'title' => 'Veuillez completer votre profil',
+                    'bio' => 'Veuillez completer votre profil',
+                    'location' => 'Veuillez completer votre profil',
                     'is_available' => true,
-                    'website' => '',
-                    'linkedin' => '',
-                    'twitter' => '',
-                    'github' => '',
+                    'website' => 'Veuillez completer votre profil',
+                    'linkedin' => 'Veuillez completer votre profil',
+                    'twitter' => 'Veuillez completer votre profil',
+                    'github' => 'Veuillez completer votre profil',
                     'user_id' => $user->id,
                 ]);
             });
