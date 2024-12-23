@@ -1,6 +1,6 @@
 @extends('layouts.candidate.master')
 @section('title')
-    {{ __('Account') }}
+    {{ __('t-profile-candidat-title') }}
 @endsection
 @section('content')
     <div class="mt-1 -ml-3 -mr-3 rounded-none card">
@@ -209,7 +209,7 @@
                     <div class="card-body">
                         @if ($user->personne && $user->profile && $user->candidate)
                         <form action="{{route('candidate.store')}}" method="POST" class="create-form23">
-                            @csrf
+                            {{ csrf_field() }}
                             <div class="grid grid-cols-1 gap-x-5 md:grid-cols-2 xl:grid-cols-2">
                                 <div class="mb-4">
                                     <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Prenom

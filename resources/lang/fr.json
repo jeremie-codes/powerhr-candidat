@@ -216,5 +216,6 @@
     "t-admin": "Administrateur",
     "t-prospects": "Prospects",
     "t-view": "Vue",
-    "t-rating": "Evaluation"
+    "t-rating": "Evaluation",
+    "t-profile-candidat-title": "Profil candidat"
 }
