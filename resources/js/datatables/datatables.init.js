@@ -103,6 +103,7 @@ document.querySelector('#deleteButton').addEventListener('click', function () {
 //Custom filtering - range search
 const minEl = document.querySelector('#min');
 const maxEl = document.querySelector('#max');
+const status = document.querySelector('#status');
 
 // Custom range filtering function
 DataTable.ext.search.push(function (settings, data, dataIndex) {

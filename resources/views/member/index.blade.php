@@ -9,63 +9,15 @@
     <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12">
         <div class="xl:col-span-12">
             <div class="card" id="usersTable">
-                <div class="card-body">
-                    <div class="flex items-center">
-                        <h6 class="text-15 grow">Users List</h6>
-                        <div class="shrink-0">
-                            <button data-modal-target="addUserModal" type="button"
-                                class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i
-                                    data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">Add
-                                    User</span></button>
-                        </div>
-                    </div>
-                </div>
-
-                
-                <div class="!py-3.5 card-body border-y border-dashed border-slate-200 dark:border-zink-500">
-                    @if (session('delete-success'))
+                @if (session('delete-success'))
+                    <div class="!py-3.5 card-body border-y border-dashed border-slate-200 dark:border-zink-500">                  
                         <div
                             class="px-4 py-3 text-sm text-red-500 bg-white border border-red-300 rounded-md dark:bg-zink-700 dark:border-red-500">
                             <span class="font-bold">Notification</span> 
                             {{ session('delete-success') }}
                         </div>
-                    @endif
-                    <form action="#!">
-                        <div class="grid grid-cols-1 gap-5 xl:grid-cols-12">
-                            <div class="relative xl:col-span-2">
-                                <input type="text"
-                                    class="ltr:pl-8 rtl:pr-8 search form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                    placeholder="Search for name, email, phone number etc..." autocomplete="off">
-                                <i data-lucide="search"
-                                    class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600"></i>
-                            </div><!--end col-->
-                            <div class="xl:col-span-2">
-                                <select
-                                    class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                    data-choices id="choices-single-default">
-                                    <option value="">Select Status</option>
-                                    <option value="Verified">Verified</option>
-                                    <option value="Waiting">Waiting</option>
-                                    <option value="Rejected">Rejected</option>
-                                    <option value="Hidden">Hidden</option>
-                                </select>
-                            </div><!--end col-->
-                            <div class="xl:col-span-3 xl:col-start-10">
-                                <div class="flex gap-2 xl:justify-end">
-                                    <div>
-                                        <button type="button"
-                                            class="bg-white border-dashed text-custom-500 btn border-custom-500 hover:text-custom-500 hover:bg-custom-50 hover:border-custom-600 focus:text-custom-600 focus:bg-custom-50 focus:border-custom-600 active:text-custom-600 active:bg-custom-50 active:border-custom-600 dark:bg-zink-700 dark:ring-custom-400/20 dark:hover:bg-custom-800/20 dark:focus:bg-custom-800/20 dark:active:bg-custom-800/20"><i
-                                                data-lucide="download" class="inline-block size-4"></i> <span
-                                                class="align-middle">Import</span></button>
-                                    </div>
-                                    <button
-                                        class="flex items-center justify-center size-[37.5px] p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"><i
-                                            data-lucide="sliders-horizontal" class="size-4"></i></button>
-                                </div>
-                            </div><!--end col-->
-                        </div><!--end grid-->
-                    </form>
-                </div>
+                    </div>
+                @endif
                 <div class="card-body">
                     <div class="-mx-5 -mb-5 overflow-x-auto">
                         <table class="w-full border-separate table-custom border-spacing-y-1 whitespace-nowrap">

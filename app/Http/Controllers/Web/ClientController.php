@@ -13,7 +13,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $customers = User::role('customer')->paginate(20);
+         $customers = User::role('customer')->with('customer')->paginate(20);
         return view('customer.index', [
             'customers' => $customers
         ]);
@@ -40,7 +40,11 @@ class ClientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $customer = User::with('customer')->findOrFail($id);
+
+        return view('customer.show', [
+            'customer' => $customer
+        ]);
     }
 
     /**

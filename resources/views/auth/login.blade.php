@@ -11,8 +11,8 @@
                 <div class="!px-12 !py-12 card-body">
 
                     <div class="text-center">
-                        <h4 class="mb-2 text-purple-500 dark:text-purple-500">Welcome Back !</h4>
-                        <p class="text-slate-500 dark:text-zink-200">Sign in to continue to Tailwick.</p>
+                        <h4 class="mb-2 text-purple-500 dark:text-purple-500">{{ __('t-welcome') }} !</h4>
+                        <p class="text-slate-500 dark:text-zink-200">{{__('t-sign-in-to-continue')}} {{config('app.name')}}</p>
                     </div>
 
                     @if (session('status'))
@@ -58,22 +58,6 @@
                             <button type="submit"
                                 class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Sign
                                 In</button>
-                        </div>
-
-                        <div
-                            class="relative text-center my-9 before:absolute before:top-3 before:left-0 before:right-0 before:border-t before:border-t-slate-200 dark:before:border-t-zink-500">
-                            <h5
-                                class="inline-block px-2 py-0.5 text-sm bg-white text-slate-500 dark:bg-zink-600 dark:text-zink-200 rounded relative">
-                                Sign In with</h5>
-                        </div>
-
-                        <x-social-login />
-
-                        <div class="mt-10 text-center">
-                            <p class="mb-0 text-slate-500 dark:text-zink-200">Don't have an account ? <a
-                                    href="{{ route('register') }}"
-                                    class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">
-                                    SignUp</a> </p>
                         </div>
                     </form>
                 </div>

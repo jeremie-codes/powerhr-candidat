@@ -15,7 +15,6 @@ class Profile extends Model
         'user_id',
         'title',
         'bio',
-        'salary',
         'location',
         'is_available',
         'website',

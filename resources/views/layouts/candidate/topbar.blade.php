@@ -23,7 +23,7 @@
                             <img src="{{ URL::asset('build/images/logo-sm.png') }}" alt="" class="h-6 mx-auto">
                         </span>
                         <span class="group-data-[topbar=dark]:block group-data-[topbar=brand]:block">
-                            <img src="{{ URL::asset('build/images/logo-light.png') }}" alt=""
+                            <img src="{{ URL::asset('build/images/logo-dark.png') }}" alt=""
                                 class="h-6 mx-auto">
                         </span>
                     </a>

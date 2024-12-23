@@ -70,6 +70,21 @@
                                 </h5>
                                 <p class="text-slate-500 dark:text-zink-200">{{__('t-gender')}}</p>
                             </li>
+                            <li class="px-5">
+                                <h5>
+                                    {{$view}}
+                                </h5>
+                                <p class="text-slate-500 dark:text-zink-200">{{__('t-view')}}</p>
+                            </li>
+                            @if($user->ratings)
+                                <li class="px-5">
+                                    <h5>
+                                        {{$user->ratings->rating}}
+                                    </h5>
+                                    <p class="text-slate-500 dark:text-zink-200">{{__('t-rating')}}</p>
+                                </li>
+                            @endif
+                            
                         </ul>
                     @endif
                     @if ($user->profile)
@@ -115,39 +130,10 @@
                         <a href="mailto:{{$user->email}}"
                             class="flex items-center justify-center size-[37.5px] p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"><i
                                 data-lucide="mail" class="size-4"></i></a>
-                        <button type="button"
+                        <button type="button" data-modal-target="addDocuments"
                             class="text-white transition-all duration-200 ease-linear btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
-                            {{__('t-hire')}}
+                            {{__('t-rating')}}
                         </button>
-
-                        <div class="relative dropdown">
-                            <button
-                                class="flex items-center justify-center size-[37.5px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                id="accountSettings" data-bs-toggle="dropdown"><i data-lucide="more-horizontal"
-                                    class="size-4"></i></button>
-                            <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white dark:bg-zink-600 rounded-md shadow-md dropdown-menu min-w-[10rem]"
-                                aria-labelledby="accountSettings">
-                                <li class="px-3 mb-2 text-sm text-slate-500">
-                                    Payments
-                                </li>
-                                <li>
-                                    <a class="block px-4 py-1.5 text-base font-medium transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                        href="#!">Create Invoice</a>
-                                </li>
-                                <li>
-                                    <a class="block px-4 py-1.5 text-base font-medium transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                        href="#!">Pending Billing</a>
-                                </li>
-                                <li>
-                                    <a class="block px-4 py-1.5 text-base font-medium transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                        href="#!">Genarate Bill</a>
-                                </li>
-                                <li>
-                                    <a class="block px-4 py-1.5 text-base font-medium transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                        href="#!">Subscription</a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div><!--end grid-->
@@ -163,19 +149,13 @@
                 <li class="group">
                     <a href="javascript:void(0);" data-tab-toggle data-target="documentsTabs"
                         class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border-b border-transparent group-[.active]:text-custom-500 dark:group-[.active]:text-custom-500 group-[.active]:border-b-custom-500 dark:group-[.active]:border-b-custom-500 hover:text-custom-500 dark:hover:text-custom-500 active:text-custom-500 dark:active:text-custom-500 -mb-[1px]">
-                        Documents
+                        Skills
                     </a>
                 </li>
                 <li class="group">
                     <a href="javascript:void(0);" data-tab-toggle data-target="projectsTabs"
                         class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border-b border-transparent group-[.active]:text-custom-500 dark:group-[.active]:text-custom-500 group-[.active]:border-b-custom-500 dark:group-[.active]:border-b-custom-500 hover:text-custom-500 dark:hover:text-custom-500 active:text-custom-500 dark:active:text-custom-500 -mb-[1px]">
                         {{ __('t-projects') }}
-                    </a>
-                </li>
-                <li class="group">
-                    <a href="javascript:void(0);" data-tab-toggle data-target="followersTabs"
-                        class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border-b border-transparent group-[.active]:text-custom-500 dark:group-[.active]:text-custom-500 group-[.active]:border-b-custom-500 dark:group-[.active]:border-b-custom-500 hover:text-custom-500 dark:hover:text-custom-500 active:text-custom-500 dark:active:text-custom-500 -mb-[1px]">
-                        {{ __('t-similar') }}
                     </a>
                 </li>
             </ul>
@@ -325,11 +305,6 @@
         <div class="hidden tab-pane" id="documentsTabs">
             <div class="flex items-center gap-3 mb-4">
                 <h5 class="underline grow">Documents</h5>
-                <div class="shrink-0">
-                    <button data-modal-target="addDocuments" type="button"
-                        class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Add
-                        Document</button>
-                </div>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full align-middle border-separate whitespace-nowrap border-spacing-y-1">
@@ -1383,78 +1358,26 @@
         class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show">
         <div class="w-screen md:w-[30rem] bg-white shadow rounded-md dark:bg-zink-600 flex flex-col h-full">
             <div class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-zink-500">
-                <h5 class="text-16">Add Document</h5>
+                <h5 class="text-16">
+                    Coter le Compte
+                </h5>
                 <button data-modal-close="addDocuments"
                     class="transition-all duration-200 ease-linear text-slate-500 hover:text-red-500 dark:text-zink-200 dark:hover:text-red-500"><i
                         data-lucide="x" class="size-5"></i></button>
             </div>
             <div class="max-h-[calc(theme('height.screen')_-_180px)] p-4 overflow-y-auto">
-                <form action="#!">
+                <form action="{{ route('user.rating') }}" method="POST" class="create-form">
+                    @csrf
                     <div class="mb-3">
+                        <input type="hidden" name="user" value="{{ $user->id }}">
                         <label for="documentsName" class="inline-block mb-2 text-base font-medium">Documents
                             Name</label>
-                        <input type="text" id="documentsName"
+                        <input type="number" id="documentsName" max="5" min="1" name="rating"
                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="Name" required>
+                            placeholder="Cote" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="documentsType" class="inline-block mb-2 text-base font-medium">Type</label>
-                        <select class="form-input border-slate-300 focus:outline-none focus:border-custom-500"
-                            data-choices name="documentsType" id="documentsType">
-                            <option value="">Documents Type</option>
-                            <option value="Docs">Docs</option>
-                            <option value="SCSS">SCSS</option>
-                            <option value="Javascript">Javascript</option>
-                            <option value="SVG">SVG</option>
-                            <option value="MP4">MP4</option>
-                            <option value="PNG">PNG</option>
-                            <option value="HTML">HTML</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="inline-block mb-2 text-base font-medium">Upload File</label>
-                        <div
-                            class="flex items-center justify-center border rounded-md cursor-pointer dropzone border-slate-200 dark:border-zink-500">
-                            <div class="fallback">
-                                <input name="file" type="file" multiple="multiple">
-                            </div>
-                            <div class="w-full py-5 text-lg text-center dz-message needsclick">
-                                <div class="mb-3">
-                                    <i data-lucide="upload-cloud"
-                                        class="block size-12 mx-auto text-slate-500 fill-slate-200 dark:text-zink-200 dark:fill-zink-500"></i>
-                                </div>
-
-                                <h5 class="mb-0 font-normal text-slate-500 dark:text-zink-200 text-15">Drag and drop your
-                                    files or <a href="#!">browse</a> your files</h5>
-                            </div>
-                        </div>
-
-                        <ul class="mb-0" id="dropzone-preview">
-                            <li class="mt-2" id="dropzone-preview-list">
-                                <!-- This is used as the file preview template -->
-                                <div class="border rounded">
-                                    <div class="flex p-2">
-                                        <div class="shrink-0 me-3">
-                                            <div class="p-2 rounded-md size-14 bg-slate-100 dark:bg-zink-600">
-                                                <img data-dz-thumbnail class="block w-full h-full rounded-md"
-                                                    src="assets/images/new-document.png" alt="Dropzone-Image">
-                                            </div>
-                                        </div>
-                                        <div class="grow">
-                                            <div class="pt-1">
-                                                <h5 class="mb-1 text-15" data-dz-name>&nbsp;</h5>
-                                                <p class="mb-0 text-slate-500 dark:text-zink-200" data-dz-size></p>
-                                                <strong class="error text-danger" data-dz-errormessage></strong>
-                                            </div>
-                                        </div>
-                                        <div class="shrink-0 ms-3">
-                                            <button data-dz-remove
-                                                class="px-2 py-1.5 text-xs text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="ckeditor-classic text-slate-800">
+                        <textarea name="description" id="description" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"></textarea>
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <button type="reset" data-modal-close="addDocuments"

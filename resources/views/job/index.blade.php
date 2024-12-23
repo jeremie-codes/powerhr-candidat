@@ -30,12 +30,6 @@
                             placeholder="Select Date">
                     </div>
                 </div><!--end col-->
-                <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11">
-                    <a href="{{ url('apps-ecommerce-product-create') }}" type="button"
-                        class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i
-                            data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">Add
-                            Product</span></a>
-                </div>
             </div><!--end grid-->
         </div>
         <div class="!pt-1 card-body">

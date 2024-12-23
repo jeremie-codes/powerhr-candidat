@@ -3,30 +3,21 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Candidates;
 use App\Models\User;
 use App\Models\Personne;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CandidateController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = User::with('personne', 'profile')->findOrFail(Auth::user()->id);
+        $user = User::with('candidates', 'profile', 'personne')->findOrFail(Auth::user()->id);
 
         return view('candidate.index', [
             'user' => $user
@@ -38,50 +29,62 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nom' => ['nullable'],
-            'postNom' => ['nullable'],
-            'prenom' => ['nullable'],
-            'dateNaissance' => ['nullable'],
-            'sexe' => ['nullable'],
-            'nationalite' => ['nullable'],
-            'adresse' => ['nullable'],
-            'codePostal' => ['nullable'],
-            'ville' => ['nullable'],
-            'telephone' => ['nullable'],
-            'user_id' => ['nullable'],
-            'matricule' => ['nullable'],
-            'SkillSet' => ['nullable'],
-            'HighestQualificationHeld' => ['nullable'],
-            'CurrentSalary' => ['nullable'],
-            'AdditionalInformation' => ['nullable'],
-            'Street' => ['nullable'],
-            'School' => ['nullable'],
-            'ExperienceDetails' => ['nullable'],
-        ]);
+        // $request->validate([
+        //     'nom' => $request['nom'],
+        //     'postNom' => $request['postNom'],
+        //     'prenom' => $request['prenom'],
+        //     'dateNaissance' => $request['dateNaissance'],
+        //     'sexe' => ['nullable'],
+        //     'nationalite' => ['nullable'],
+        //     'adresse' => ['nullable'],
+        //     'codePostal' => ['nullable'],
+        //     'ville' => ['nullable'],
+        //     'telephone' => ['nullable'],
+        //     'SkillSet' => ['nullable'],
+        //     'HighestQualificationHeld' => ['nullable'],
+        //     'AdditionalInformation' => ['nullable'],
+        //     'School' => ['nullable'],
+        //     'ExperienceDetails' => ['nullable'],
+        // ]);
 
-        Personne::create($request->validated());
+        echo($request->user);
+
+        $user = User::findOrFail($request->user);
+        $personne = Personne::findOrFail($request->user);
+        $candidate = Candidates::findOrFail($request->user);
+        $profile = Profile::findOrFail($request->user);
+
+        if (!$user && !$personne && !$candidate && !$profile) {
+            return redirect()->route('candidate.index', ['user' => $user]);
+        }
+        try {
+            $personne->update([
+                'nom' => $request['nom'],
+                'postNom' => $request['postNom'],
+                'prenom' => $request['prenom'],
+                'dateNaissance' => $request['dateNaissance'],
+                'sexe' => $request['sexe'],
+                'nationalite' => $request['nationalite'],
+                'adresse' => $request['adresse'],
+                'codePostal' => $request['codePostal'],
+                'ville' => $request['ville'],
+                'telephone' => $request['telephone'],
+            ]);
+
+            $candidate->update([
+                'SkillSet' =>  $request['SkillSet'],
+                'HighestQualificationHeld' =>  $request['HighestQualificationHeld'],
+                'AdditionalInformation' =>  $request['AdditionalInformation'],
+                'School' =>  $request['School'],
+                'ExperienceDetails' =>  $request['ExperienceDetails'],
+            ]);
+            
+            return redirect()->route('candidate.index', ['fragment' => 'projectsTabs']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id) //: View
-    {
-        $user = User::with('personne', 'profile')->findOrFail($id);
-        return view('member.show', [
-            'user' => $user
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      */

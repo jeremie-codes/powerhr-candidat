@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\AccountRating;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {
@@ -14,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $members = User:: with('personne', 'profile')->role(['candidate', 'employee'])->paginate(20);
+        $members = User:: with('personne', 'profile','ratings')->role(['candidate', 'employee'])->paginate(20);
 
         return view('member.index', [
             'members' => $members
@@ -32,9 +34,25 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function rating(Request $request)
     {
-        //
+        $user = User::findOrFail($request->user);
+        $rating = AccountRating::where('user_id', $user->id)->first();
+        if($rating) {
+            $rating->update([
+                'description' => $request->description,
+                'rating' => $request->rating,
+            ]);
+            return redirect()->route('users.show', $user->id);
+        }else{
+            $rating = AccountRating::create([
+                'user_id' => $user->id,
+                'description' => $request->description,
+                'rating' => $request->rating,
+            ]);
+            return redirect()->route('users.show', $user->id);
+        }
+        return redirect()->route('users.show', $user->id);
     }
 
     /**
@@ -43,8 +61,14 @@ class UserController extends Controller
     public function show(string $id) //: View
     {
         $user = User::with('personne', 'profile')->findOrFail($id);
+        $minutes = 5;
+        views($user)
+            ->cooldown($minutes)
+            ->record();
+        $view = views($user)->count();
         return view('member.show', [
-            'user' => $user
+            'user' => $user,
+            'view' => $view
         ]);
     }
 

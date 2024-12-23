@@ -2,15 +2,34 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use zoparga\ReviewRateable\Contracts\ReviewRateable;
+use zoparga\ReviewRateable\Traits\ReviewRateable as ReviewRateableTrait;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ReviewRateable, Viewable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use HasTeams;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
+    use ReviewRateableTrait;
+    use HasRoles, SoftDeletes;
+    use InteractsWithViews;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +37,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -31,6 +48,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -42,24 +61,47 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function education()
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array<int, string>
+     */
+    protected $appends = [
+        'profile_photo_url',
+    ];
+
+    public function candidates(): HasOne
     {
-        return $this->hasMany(Education::class);
+        return $this->hasOne(Candidates::class);
     }
 
-    public function experiences()
+    public function customer(): HasOne
     {
-        return $this->hasMany(Experience::class);
+        return $this->hasOne(Client::class);
     }
 
-    public function skills()
+    public function personne(): HasOne
+    {
+        return $this->hasOne(Personne::class);
+    }
+
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function skills(): HasMany
     {
         return $this->hasMany(Skill::class);
     }
 
-    // write the userDetail class one user can have many user details
-    public function userDetail()
+    public function ratings(): HasOne
     {
-        return $this->hasOne(UserDetail::class);
+        return $this->hasOne(AccountRating::class);
+    }
+
+    public function getIsEmployeeAttribute()
+    {
+        return $this->hasRole('employee');
     }
 }

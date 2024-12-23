@@ -24,115 +24,100 @@
             </div>
 
             <div class="-mx-5 overflow-x-auto">
-                <table class="w-full whitespace-nowrap">
+                <table id="basic_tables" class="display  whitespace-nowrap">
                     <thead class="ltr:text-left rtl:text-right">
                         <tr class="bg-slate-100 dark:bg-zink-600">
                             <th
                                 class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 ID">
-                                Employee ID</th>
+                                Matricule
+                            </th>
                             <th
                                 class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Name">
-                                Name</th>
+                                {{ __('t-name') }}
+                            </th>
                             <th
                                 class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Role">
-                                Designation</th>
+                                {{ __('t-employer') }}
+                            </th>
                             <th
                                 class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Email">
-                                Email Id</th>
+                                {{ __('t-designation') }}
+                            </th>
                             <th
                                 class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Phone">
-                                Phone Number</th>
-                            <th
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Country">
-                                Location</th>
+                                {{__('t-status')}}
+                            </th>
                             <th
                                 class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Experience">
-                                Experience</th>
+                                {{__('t-location')}}
+                            </th>
                             <th
                                 class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 JoinDate">
-                                Joining Date</th>
+                                {{__('t-created-date')}}
+                            </th>
                             <th
                                 class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Action">
                                 Action</th>
                         </tr>
                     </thead>
                     <tbody class="list" id="employeeList">
-                        <tr>
-                            <td
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 ID">
-                                <a href="#!"
-                                    class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600">#TWE1001501</a>
-                            </td>
-                            <td
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Name">
-                                <a href="#!" class="flex items-center gap-3">
-                                    <div class="size-6 rounded-full shrink-0 bg-slate-100">
-                                        <img src="{{ URL::asset('build/images/users/user-1.jpg') }}" alt=""
-                                            class="h-6 rounded-full">
+                        @forelse ($hireds as $hired)
+                            <tr>
+                                <td
+                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 ID">
+                                    <a href="{{ route('jobs.show', $hired->job->matricule) }}"
+                                        class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600">
+                                        #{{$hired->matricule}}
+                                    </a>
+                                </td>
+                                <td
+                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Name">
+                                    <a href="{{ route('users.show', $hired->user->id) }}" class="flex items-center gap-3">
+                                        
+                                        <h6 class="grow">
+                                            {{$hired->user->personne->nom}} {{$hired->user->personne->postNom}} {{$hired->user->personne->prenom}}
+                                        </h6>
+                                    </a>
+                                </td>
+                                <td
+                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Role">
+                                    {{$hired->job->user->customer->name}} 
+                                </td>
+                                <td
+                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Email">
+                                    {{$hired->job->title}} 
+                                </td>
+                                <td
+                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Phone">
+                                    {{$hired->is_active ? 'Active' : 'Inactive'}}
+                                </td>
+                                <td
+                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Country">
+                                    {{$hired->job->location}}
+                                </td>
+                                <td
+                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 JoinDate">
+                                    {{date('d-m-Y', strtotime($hired->job->created_at))}}
+                                </td>
+                                <td
+                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Action">
+                                    <div class="flex gap-3">
+                                        <a class="flex items-center justify-center size-8 transition-all duration-200 ease-linear rounded-md bg-slate-100 text-slate-500 hover:text-custom-500 hover:bg-custom-100 dark:bg-zink-600 dark:text-zink-200 dark:hover:bg-custom-500/20 dark:hover:text-custom-500"
+                                            href="{{ route('jobs.show', $hired->job->matricule) }}"><i data-lucide="eye"
+                                                class="inline-block size-3"></i> </a>
                                     </div>
-                                    <h6 class="grow">Willie Torres</h6>
-                                </a>
-                            </td>
-                            <td
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Role">
-                                Nuxt JS Developer</td>
-                            <td
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Email">
-                                willie@tailwick.com</td>
-                            <td
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Phone">
-                                070 3715 3689</td>
-                            <td
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Country">
-                                United States</td>
-                            <td
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Experience">
-                                3 Year</td>
-                            <td
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 JoinDate">
-                                05 Feb, 2020</td>
-                            <td
-                                class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Action">
-                                <div class="flex gap-3">
-                                    <a class="flex items-center justify-center size-8 transition-all duration-200 ease-linear rounded-md bg-slate-100 text-slate-500 hover:text-custom-500 hover:bg-custom-100 dark:bg-zink-600 dark:text-zink-200 dark:hover:bg-custom-500/20 dark:hover:text-custom-500"
-                                        href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                            class="inline-block size-3"></i> </a>
-                                    <a href="#!" data-modal-target="addEmployeeModal"
-                                        class="flex items-center justify-center size-8 transition-all duration-200 ease-linear rounded-md edit-item-btn bg-slate-100 text-slate-500 hover:text-custom-500 hover:bg-custom-100 dark:bg-zink-600 dark:text-zink-200 dark:hover:bg-custom-500/20 dark:hover:text-custom-500"><i
-                                            data-lucide="pencil" class="size-4"></i></a>
-                                    <a href="#!" data-modal-target="deleteModal"
-                                        class="flex items-center justify-center size-8 transition-all duration-200 ease-linear rounded-md remove-item-btn bg-slate-100 text-slate-500 hover:text-custom-500 hover:bg-custom-100 dark:bg-zink-600 dark:text-zink-200 dark:hover:bg-custom-500/20 dark:hover:text-custom-500"><i
-                                            data-lucide="trash-2" class="size-4"></i></a>
-                                </div>
-                            </td>
+                                </td>
+                            </tr>
+                        @empty
+                        <tr>
+                            Aucune donnée disponible
                         </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
-            <div class="flex flex-col items-center gap-4 px-4 mt-4 md:flex-row" id="pagination-element">
-                <div class="grow">
-                    <p class="text-slate-500 dark:text-zink-200">Showing <b class="showing">10</b> of <b
-                            class="total-records">38</b> Results</p>
-                </div>
-
-                <div class="col-sm-auto mt-sm-0">
-                    <div class="flex gap-2 pagination-wrap justify-content-center">
-                        <a class="inline-flex items-center justify-center bg-white dark:bg-zink-700 h-8 px-3 transition-all duration-150 ease-linear border rounded border-slate-200 dark:border-zink-500 text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-500 dark:[&.active]:text-custom-500 [&.active]:bg-custom-50 dark:[&.active]:bg-custom-500/10 [&.active]:border-custom-50 dark:[&.active]:border-custom-500/10 [&.active]:hover:text-custom-700 dark:[&.active]:hover:text-custom-700 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto page-item pagination-prev "
-                            href="javascript:void(0)">
-                            <i class="size-4 mr-1 rtl:rotate-180" data-lucide="chevron-left"></i> Prev
-                        </a>
-                        <ul class="flex flex-wrap items-center gap-2 pagination listjs-pagination">
-                        </ul>
-                        <a class="inline-flex items-center justify-center bg-white dark:bg-zink-700 h-8 px-3 transition-all duration-150 ease-linear border rounded border-slate-200 dark:border-zink-500 text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-500 dark:[&.active]:text-custom-500 [&.active]:bg-custom-50 dark:[&.active]:bg-custom-500/10 [&.active]:border-custom-50 dark:[&.active]:border-custom-500/10 [&.active]:hover:text-custom-700 dark:[&.active]:hover:text-custom-700 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto page-item pagination-next"
-                            href="javascript:void(0)">
-                            Next <i class="size-4 ml-1 rtl:rotate-180" data-lucide="chevron-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-
 
     <div id="addEmployeeModal" modal-center
         class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show ">
@@ -221,6 +206,19 @@
     </div><!--end delete modal-->
 @endsection
 @push('scripts')
+    <script src="{{ URL::asset('build/js/datatables/jquery-3.7.0.js') }}"></script>
+    <script src="{{ URL::asset('build/js/datatables/data-tables.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/datatables/data-tables.tailwindcss.min.js') }}"></script>
+    <!--buttons dataTables-->
+    <script src="{{ URL::asset('build/js/datatables/datatables.buttons.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/datatables/jszip.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/datatables/pdfmake.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/datatables/buttons.print.min.js') }}"></script>
+
+    <script src="{{ URL::asset('build/js/datatables/datatables.init.js') }}"></script>
+
+
     <script src="{{ URL::asset('build/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <!-- list js-->
     <script src="{{ URL::asset('build/libs/list.js/list.min.js') }}"></script>

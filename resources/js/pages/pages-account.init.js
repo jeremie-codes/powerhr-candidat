@@ -44,10 +44,10 @@ function getChartColorsArray(chartId) {
 //basic column chart
 var options = {
     series: [{
-        name: 'Entreprises',
+        name: 'Following',
         data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 87, 72]
     }, {
-        name: 'Administrateur',
+        name: 'Followers',
         data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 105, 91]
     }],
     chart: {

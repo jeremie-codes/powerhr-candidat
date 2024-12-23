@@ -123,11 +123,11 @@ chart.render();
 //Order Statistics
 var options = {
     series: [{
-        name: 'Pending',
-        data: [17, 16, 19, 22, 24, 29, 25, 20, 25, 31, 28, 35,]
+        name: 'Pending 33',
+        data: [17, 16, 19, 22, 24, 29, 25, 20, 25, 31, 28,]
     },{
-        name: 'New Orders',
-        data: [30, 24, 32, 27, 16, 22, 32, 21, 24, 20, 38, 28]
+        name: 'New ds Orders22',
+        data: [30, 24, 32, 27, 16, 22, 32, 21, 24, 20]
     }],
     chart: {
         type: 'line',
@@ -138,7 +138,7 @@ var options = {
     },
     stroke: {
         curve: 'smooth',
-        width: 2,
+        width: 20,
     },
     colors: getChartColorsArray("orderStatisticsChart"),
     dataLabels: {
@@ -158,6 +158,9 @@ var options = {
     }
 };
 
+if (chart) {
+    chart.destroy();
+}
 var chart = new ApexCharts(document.querySelector("#orderStatisticsChart"), options);
 chart.render();
 
