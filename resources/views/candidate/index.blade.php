@@ -238,13 +238,6 @@
             <div class="overflow-x-auto">
                 <div class="card">
                     <div class="card-body">
-                        @if ($user->personne && $user->profile && $user->candidate)
-                        {{ html()->modelForm($user, 'PUT', '/update-url')->open() }}
-
-                        {{ html()->text('name') }}
-                        {{ html()->email('email')}}
-
-                        {{ html()->closeModelForm() }}
                             <form action="{{ route('candidate.store') }}" method="POST">
                                 <div class="grid grid-cols-1 gap-x-5 md:grid-cols-2 xl:grid-cols-2">
                                     <div class="mb-4">
@@ -330,98 +323,6 @@
                                         a jour</button>
                                 </div>
                             </form>
-                        @else
-                            <form action="{{ route('candidate.store') }}" method="POST" class="create-form23">
-                                <div class="grid grid-cols-1 gap-x-5 md:grid-cols-2 xl:grid-cols-2">
-                                    <div class="mb-4">
-                                        <label for="firstNameInput2"
-                                            class="inline-block mb-2 text-base font-medium">Prenom
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="text" id="firstNameInput2"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Entrez votre prenom" required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Nom
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="text" id="firstNameInput2"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Entrez votre nom">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="lastNameInput2"
-                                            class="inline-block mb-2 text-base font-medium">Postnom
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="text" id="lastNameInput2"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Entrez votre postnom">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="UsernameInput" class="inline-block mb-2 text-base font-medium">Mobile
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="text" id="UsernameInput"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Entrez votre numero">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="cityInput" class="inline-block mb-2 text-base font-medium">Email <span
-                                                class="text-red-500">*</span></label>
-                                        <input type="text" id="cityInput"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            value="{{ $user->email }}" required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="stateInput"
-                                            class="inline-block mb-2 text-base font-medium">Experiences
-                                            <span class="text-red-500">*</span></label>
-                                        <select
-                                            class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            id="stateInput">
-                                            <option selected="" disabled="" value="">Choisisez...</option>
-                                            <option>1 an</option>
-                                            <option>2 ans</option>
-                                            <option>3 ans</option>
-                                            <option>4 ans</option>
-                                            <option>5 ans</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="zipInput" class="inline-block mb-2 text-base font-medium">Expected
-                                            salary
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="number" id="zipInput"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Salary">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="stateInput" class="inline-block mb-2 text-base font-medium">Highest
-                                            Qualification Held <span class="text-red-500">*</span></label>
-                                        <select
-                                            class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            id="stateInput">
-                                            <option selected="" disabled="" value="">Choisisez...</option>
-                                            <option>Certificat primaire</option>
-                                            <option>Diplome d'Etat</option>
-                                            <option>Diplome de graduat</option>
-                                            <option>Diplome de Licence</option>
-                                            <option>Diplome de Doctorat</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <label for="cityInput" class="inline-block mb-2 text-base font-medium">Biographie
-                                        <span class="text-red-500">*</span></label>
-                                    <input type="text" id="bio"
-                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        value="{{ $user->profile->bio }}">
-                                </div>
-                                <div class="flex justify-end gap-2">
-                                    <button type="submit"
-                                        class="text-white transition-all duration-200 ease-linear btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100">Mettre
-                                        a jour</button>
-                                </div>
-                            </form>
-                        @endif
                     </div>
                 </div>
             </div>
