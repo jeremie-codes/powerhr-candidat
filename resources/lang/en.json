@@ -217,5 +217,13 @@
     "t-admin": "Administrator",
     "t-prospects": "Prospects",
     "t-view": "View",
-    "t-rating": "Rating"
+    "t-rating": "Rating",
+    "t-profile-candidat-title": "Candidat profile",
+    "t-bio": "Biography",
+    "t-view-profil": "View profile",
+    "t-good-news": "Good news",
+    "t-congratulation-message-1": "Congratulation",
+    "t-congratulation-message-2": "your profile has been viewed so many times.",
+    "t-congratulation-message-3": "Don't lose hope. We will find a job for you.",
+    "t-no-infomation": "Please fill your profile."
 }

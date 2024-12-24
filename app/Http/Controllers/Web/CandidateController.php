@@ -18,7 +18,6 @@ class CandidateController extends Controller
     public function index()
     {
         $user = User::with('candidates', 'profile', 'personne')->findOrFail(Auth::user()->id);
-
         return view('candidate.index', [
             'user' => $user
         ]);
