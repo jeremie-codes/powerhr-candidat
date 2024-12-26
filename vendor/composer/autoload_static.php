@@ -41,6 +41,7 @@ class ComposerStaticInit1c09e200138f1411e46dbd34015f72db
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         'eed9c7469f94573c0d97cc45de79b754' => __DIR__ . '/..' . '/spatie/laravel-html/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
+        '3bcc28493561beac3943269a32980773' => __DIR__ . '/..' . '/synergitech/laravel-alert/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -69,6 +70,7 @@ class ComposerStaticInit1c09e200138f1411e46dbd34015f72db
         ),
         'S' => 
         array (
+            'SynergiTech\\Alert\\' => 18,
             'Symfony\\Polyfill\\Uuid\\' => 22,
             'Symfony\\Polyfill\\Php83\\' => 23,
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -237,6 +239,10 @@ class ComposerStaticInit1c09e200138f1411e46dbd34015f72db
         'Termwind\\' => 
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/termwind/src',
+        ),
+        'SynergiTech\\Alert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/synergitech/laravel-alert/src',
         ),
         'Symfony\\Polyfill\\Uuid\\' => 
         array (
@@ -676,8 +682,6 @@ class ComposerStaticInit1c09e200138f1411e46dbd34015f72db
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
-        'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
         'App\\Models\\AccountRating' => __DIR__ . '/../..' . '/app/Models/AccountRating.php',
         'App\\Models\\Candidates' => __DIR__ . '/../..' . '/app/Models/Candidates.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
@@ -7142,6 +7146,9 @@ class ComposerStaticInit1c09e200138f1411e46dbd34015f72db
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
         'Symfony\\Polyfill\\Php83\\Php83' => __DIR__ . '/..' . '/symfony/polyfill-php83/Php83.php',
         'Symfony\\Polyfill\\Uuid\\Uuid' => __DIR__ . '/..' . '/symfony/polyfill-uuid/Uuid.php',
+        'SynergiTech\\Alert\\Alert' => __DIR__ . '/..' . '/synergitech/laravel-alert/src/Alert.php',
+        'SynergiTech\\Alert\\Facade' => __DIR__ . '/..' . '/synergitech/laravel-alert/src/Facade.php',
+        'SynergiTech\\Alert\\ServiceProvider' => __DIR__ . '/..' . '/synergitech/laravel-alert/src/ServiceProvider.php',
         'Termwind\\Actions\\StyleToMethod' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Actions/StyleToMethod.php',
         'Termwind\\Components\\Anchor' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Components/Anchor.php',
         'Termwind\\Components\\BreakLine' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Components/BreakLine.php',

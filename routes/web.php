@@ -24,8 +24,14 @@ Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     
-    Route::get("/", [CandidateController::class, 'index'])->name('candidate.index');
-    Route::post("/add", [CandidateController::class, 'store'])->name('candidate.store');
+    // Route::get("/", [CandidateController::class, 'index'])->name('candidate.index');
+    // Route::post("/add", [CandidateController::class, 'store'])->name('candidate.store');
+
+    Route::resource('candidate', CandidateController::class)->only([
+        'index', 'show', 'store', 'update',
+    ]);
+
+    Route::get("candidate", [RouteController::class, 'routes'])->name('candidate.index');
 });
 
 

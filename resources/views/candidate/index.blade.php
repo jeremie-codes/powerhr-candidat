@@ -239,6 +239,7 @@
                 <div class="card">
                     <div class="card-body">
                             <form action="{{ route('candidate.store') }}" method="POST">
+                                @csrf
                                 <div class="grid grid-cols-1 gap-x-5 md:grid-cols-2 xl:grid-cols-2">
                                     <div class="mb-4">
                                         <label for="firstNameInput2"
@@ -652,8 +653,14 @@
                     </div>
                 </div>
             </div>
+            
         </div><!--end tab pane-->
-    </div>
+
+        @if (Session::has('alert.sweetalert'))
+    <script>
+        Swal.fire({!! Session::pull('alert.sweetalert') !!});
+    </script>
+@endif
 @endsection
 @push('scripts')
     <!-- apexcharts js -->

@@ -22,17 +22,31 @@ class CandidateController extends Controller
             'user' => $user
         ]);
     }
+     
+    /**
+     * Display a listing of the resource.
+     */
+    public function show()
+    {
+        $user = User::with('candidates', 'profile', 'personne')->findOrFail(Auth::user()->id);
+        
+        return view('candidate.index', [
+                     'user' => $user
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        echo("Personne ". $request);
+
         // $request->validate([
-        //     'nom' => $request['nom'],
-        //     'postNom' => $request['postNom'],
-        //     'prenom' => $request['prenom'],
-        //     'dateNaissance' => $request['dateNaissance'],
+        //     'nom' => ['nullable'],
+        //     'postNom' => ['nullable'],
+        //     'prenom' =>['nullable'],
+        //     'dateNaissance' => ['nullable'],
         //     'sexe' => ['nullable'],
         //     'nationalite' => ['nullable'],
         //     'adresse' => ['nullable'],
@@ -46,18 +60,25 @@ class CandidateController extends Controller
         //     'ExperienceDetails' => ['nullable'],
         // ]);
 
-        echo($request->user);
 
-        $user = User::findOrFail($request->user);
-        $personne = Personne::findOrFail($request->user);
-        $candidate = Candidates::findOrFail($request->user);
-        $profile = Profile::findOrFail($request->user);
 
-        if (!$user && !$personne && !$candidate && !$profile) {
-            return redirect()->route('candidate.index', ['user' => $user]);
-        }
+        $user = User::with('candidates', 'profile', 'personne')->findOrFail(Auth::user()->id);
+
+        $personne = Personne::where('user_id', $user->id)->get();
+        $candidate = Candidates::where('user_id', $user->id)->get();
+        $profile = Profile::where('user_id', $user->id)->get();
+
+        echo "Personne ".$personne;
+
+        if (!$personne && !$candidate && !$profile) {
+            return redirect()->back()->with('error', 'User not found');
+        } 
+
         try {
-            $personne->update([
+            echo "Personne ".$personne;
+
+            Personne::updateOrInsert([
+                'user_id' => $user->id,
                 'nom' => $request['nom'],
                 'postNom' => $request['postNom'],
                 'prenom' => $request['prenom'],
@@ -68,18 +89,28 @@ class CandidateController extends Controller
                 'codePostal' => $request['codePostal'],
                 'ville' => $request['ville'],
                 'telephone' => $request['telephone'],
-            ]);
-
-            $candidate->update([
-                'SkillSet' =>  $request['SkillSet'],
-                'HighestQualificationHeld' =>  $request['HighestQualificationHeld'],
-                'AdditionalInformation' =>  $request['AdditionalInformation'],
-                'School' =>  $request['School'],
-                'ExperienceDetails' =>  $request['ExperienceDetails'],
+            ], [
+                'id' => $personne->id,
             ]);
             
-            return redirect()->route('candidate.index', ['fragment' => 'projectsTabs']);
+            Candidates::updateOrInsert([
+                'user_id' => $user->id,
+                'SkillSet' => $request['SkillSet'],
+                'HighestQualificationHeld' => $request['HighestQualificationHeld'],
+                'AdditionalInformation' => $request['AdditionalInformation'],
+                'School' => $request['School'],
+            ], [
+                'id' => $candidate->id,
+            ]);
+
+            return view('candidate.index', [
+                'user' => $user
+            ]);
+
+            
         } catch (\Throwable $th) {
+            echo "Personne ".$personne;
+
             return redirect()->back()->with('error', $th->getMessage());
         }
     }

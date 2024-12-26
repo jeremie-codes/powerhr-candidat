@@ -17,6 +17,7 @@
         "livewire/livewire": "^3.0",
         "spatie/laravel-html": "^3.11",
         "spatie/laravel-permission": "^6.10",
+        "synergitech/laravel-alert": "^2.0",
         "willvincent/laravel-rateable": "^3.3",
         "zoparga/review-rateable": "^1.0"
     },
