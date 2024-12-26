@@ -68,15 +68,15 @@ class CandidateController extends Controller
         $candidate = Candidates::where('user_id', $user->id)->get();
         $profile = Profile::where('user_id', $user->id)->get();
 
-        echo "Personne ".$personne;
+        echo "Personne ".$personne ."Nom -------------> ".  $request['nom'];
 
         if (!$personne && !$candidate && !$profile) {
             return redirect()->back()->with('error', 'User not found');
         } 
 
         try {
-            echo "Personne ".$personne;
-
+            echo "Personne ".$personne ."Nom -------------> ".  $request['nom'];
+            
             Personne::updateOrInsert([
                 'user_id' => $user->id,
                 'nom' => $request['nom'],

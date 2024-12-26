@@ -245,40 +245,55 @@
                                         <label for="firstNameInput2"
                                             class="inline-block mb-2 text-base font-medium">Prenom
                                             <span class="text-red-500">*</span></label>
-                                        <input type="text" id="prenom"
+                                        <input type="text" name="prenom"
                                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Enter First Name" value="{{ $user->personne->prenom }}"
+                                            placeholder="Enter First Name" 
+
+                                            @if ($user->personne->prenom != '')
+                                                value="{{ $user->personne->prenom }}"
+                                            @endif
+                                            
                                             required>
                                     </div>
                                     <div class="mb-4">
                                         <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Nom
                                             <span class="text-red-500">*</span></label>
-                                        <input type="text" id="nom"
+                                        <input type="text" name="nom"
                                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Enter First Name" value="{{ $user->personne->nom }}" required>
+                                            placeholder="Enter First Name" 
+                                            @if ($user->personne->prenom != '')
+                                            value="{{ $user->personne->nom }}"
+                                        @endif
+                                        required>
                                     </div>
                                     <div class="mb-4">
                                         <label for="lastNameInput2"
                                             class="inline-block mb-2 text-base font-medium">Postnom
                                             <span class="text-red-500">*</span></label>
-                                        <input type="text" id="postNom"
+                                        <input type="text" name="postNom"
                                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Enter Last Name" value="{{ $user->personne->postNom }}"
+                                            placeholder="Enter Last Name" @if ($user->personne->prenom != '')
+                                            value="{{ $user->personne->postNom }}"
+                                        @endif
                                             required>
                                     </div>
                                     <div class="mb-4">
                                         <label for="UsernameInput" class="inline-block mb-2 text-base font-medium">Mobile
                                             <span class="text-red-500">*</span></label>
-                                        <input type="text" id="telephone"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            value="{{ $user->personne->telephone }}">
+                                        <input type="text" name="telephone"
+                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Enter your phone number"
+                                            @if ($user->personne->telephone != '')
+                                            value="{{ $user->personne->telephone }}" 
+                                        @endif
+                                        
+                                        required>
                                     </div>
                                     <div class="mb-4">
                                         <label for="cityInput" class="inline-block mb-2 text-base font-medium">Email <span
                                                 class="text-red-500">*</span></label>
-                                        <input type="text" id="email"
+                                        <input type="text" name="email"
                                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            value="{{ $user->email }}" required>
+                                            value="{{ $user->email }}" required disabled>
                                     </div>
                                     <div class="mb-4">
                                         <label for="stateInput"
@@ -286,7 +301,7 @@
                                             <span class="text-red-500">*</span></label>
                                         <select
                                             class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            id="experiences">
+                                            name="experiences">
                                             <option selected="" disabled="" value="">Choisisez...</option>
                                             <option>1 an</option>
                                             <option>2 ans</option>
@@ -299,16 +314,20 @@
                                         <label for="zipInput" class="inline-block mb-2 text-base font-medium">Expected
                                             salary
                                             <span class="text-red-500">*</span></label>
-                                        <input type="number" id="salary"
+                                        <input type="number" name="salary"
                                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Salary">
+                                            placeholder="Enter your salary"  @if ($user->profile->salary != '')
+                                            value="{{ $user->profile->salary }}" 
+                                        @endif
+                                        
+                                        required>
                                     </div>
                                     <div class="mb-4">
                                         <label for="stateInput" class="inline-block mb-2 text-base font-medium">Highest
                                             Qualification Held <span class="text-red-500">*</span></label>
                                         <select
                                             class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            id="qualification">
+                                            name="qualification">
                                             <option selected="" disabled="" value="">Choisisez...</option>
                                             <option>Certificat primaire</option>
                                             <option>Diplome d'Etat</option>
