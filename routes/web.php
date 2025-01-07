@@ -31,7 +31,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         'index', 'show', 'store', 'update',
     ]);
 
-    // Route::get("candidate", [RouteController::class, 'routes'])->name('candidate');
+    //Route::get("candidate", [RouteController::class, 'routes'])->name('candidate');
 });
 
 

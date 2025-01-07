@@ -40,28 +40,6 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
-        echo("Personne ". $request);
-
-        // $request->validate([
-        //     'nom' => ['nullable'],
-        //     'postNom' => ['nullable'],
-        //     'prenom' =>['nullable'],
-        //     'dateNaissance' => ['nullable'],
-        //     'sexe' => ['nullable'],
-        //     'nationalite' => ['nullable'],
-        //     'adresse' => ['nullable'],
-        //     'codePostal' => ['nullable'],
-        //     'ville' => ['nullable'],
-        //     'telephone' => ['nullable'],
-        //     'SkillSet' => ['nullable'],
-        //     'HighestQualificationHeld' => ['nullable'],
-        //     'AdditionalInformation' => ['nullable'],
-        //     'School' => ['nullable'],
-        //     'ExperienceDetails' => ['nullable'],
-        // ]);
-
-
-
         $user = User::with('candidates', 'profile', 'personne')->findOrFail(Auth::user()->id);
 
         $personne = Personne::where('user_id', $user->id)->get();
@@ -78,7 +56,7 @@ class CandidateController extends Controller
             echo "Personne ".$personne ."Nom -------------> ".  $request['nom'];
             
             Personne::updateOrInsert([
-                'user_id' => $user->id,
+                'user_id' => $user->id],[
                 'nom' => $request['nom'],
                 'postNom' => $request['postNom'],
                 'prenom' => $request['prenom'],
@@ -89,8 +67,6 @@ class CandidateController extends Controller
                 'codePostal' => $request['codePostal'],
                 'ville' => $request['ville'],
                 'telephone' => $request['telephone'],
-            ], [
-                'id' => $personne->id,
             ]);
             
             Candidates::updateOrInsert([
