@@ -24,40 +24,38 @@
                     <form method="POST" action="{{ route('login') }}" class="mt-10" id="signInForm">
                         @csrf
                         <div class="mb-3">
-                            <x-label for="email" value="{{ __('Email') }}" />
-                            <x-input id="email" type="email" name="email" :value="old('email', 'admin@themesdesign.com')" required autofocus
+                            <x-label for="email" value="{{ __('t-email') }}" />
+                            <x-input id="email" type="email" name="email" :value="old('email', 'jmonga98@gmail.in')" required autofocus
                                 autocomplete="username" placeholder="Enter your email" />
                             <x-input-error for="email" />
                         </div>
                         <div class="mb-3">
                             <div class="flex justify-between">
                                 <div>
-                                    <x-label for="password" value="{{ __('Password') }}" />
+                                    <x-label for="password" value="{{ __('t-password') }}" />
                                 </div>
                                 <div>
                                     @if (Route::has('password.request'))
                                         <a href="{{ route('password.request') }}"
-                                            class="text-gray-500 dark:text-gray-100 text-sm">Forgot password?</a>
+                                            class="text-gray-500 dark:text-gray-100 text-sm">{{ __('t-forgot_password') }}</a>
                                     @endif
                                 </div>
                             </div>
                             <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                                autocomplete="current-password" placeholder="Enter your password" value="12345678" />
+                                autocomplete="current-password" placeholder="Enter your password" value="password" />
                             <x-input-error for="password" />
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
                                 <x-checkbox id="remember_me" name="remember" />
                                 <label for="checkboxDefault1"
-                                    class="inline-block text-base font-medium align-middle cursor-pointer">Remember
-                                    me</label>
+                                    class="inline-block text-base font-medium align-middle cursor-pointer">{{ __('t-remember-me') }}</label>
                             </div>
                             <x-input-error for="remember" />
                         </div>
                         <div class="mt-5">
                             <button type="submit"
-                                class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Sign
-                                In</button>
+                                class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{ __('t-sign-in') }}</button>
                         </div>
                     </form>
                 </div>
@@ -70,12 +68,9 @@
                                 <x-application-logo />
                             </a>
                         </div>
-                        <div class="shrink-0">
-                            <x-language />
-                        </div>
                     </div>
                     <div class="mt-auto">
-                        <img src="{{ URL::asset('build/images/auth/img-01.png') }}" alt=""
+                        <img src="{{ URL::asset('build/images/auth/login-image.png') }}" alt=""
                             class="md:max-w-[32rem] mx-auto">
                     </div>
                 </div>

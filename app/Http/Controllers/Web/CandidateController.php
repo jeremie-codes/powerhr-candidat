@@ -46,47 +46,40 @@ class CandidateController extends Controller
         $candidate = Candidates::where('user_id', $user->id)->get();
         $profile = Profile::where('user_id', $user->id)->get();
 
-        echo "Personne ".$personne ."Nom -------------> ".  $request['nom'];
-
         if (!$personne && !$candidate && !$profile) {
             return redirect()->back()->with('error', 'User not found');
         } 
 
         try {
-            echo "Personne ".$personne ."Nom -------------> ".  $request['nom'];
-            
             Personne::updateOrInsert([
                 'user_id' => $user->id],[
                 'nom' => $request['nom'],
                 'postNom' => $request['postNom'],
                 'prenom' => $request['prenom'],
-                'dateNaissance' => $request['dateNaissance'],
-                'sexe' => $request['sexe'],
-                'nationalite' => $request['nationalite'],
-                'adresse' => $request['adresse'],
-                'codePostal' => $request['codePostal'],
-                'ville' => $request['ville'],
+                // 'dateNaissance' => $request['dateNaissance'],
+                // 'sexe' => $request['sexe'],
+                // 'nationalite' => $request['nationalite'],
+                // 'adresse' => $request['adresse'],
+                // 'codePostal' => $request['codePostal'],
+                // 'ville' => $request['ville'],
                 'telephone' => $request['telephone'],
             ]);
             
-            Candidates::updateOrInsert([
-                'user_id' => $user->id,
-                'SkillSet' => $request['SkillSet'],
-                'HighestQualificationHeld' => $request['HighestQualificationHeld'],
-                'AdditionalInformation' => $request['AdditionalInformation'],
-                'School' => $request['School'],
-            ], [
-                'id' => $candidate->id,
-            ]);
+            // Candidates::updateOrInsert([
+            //     'user_id' => $user->id,
+            //     'SkillSet' => $request['SkillSet'],
+            //     'HighestQualificationHeld' => $request['HighestQualificationHeld'],
+            //     'AdditionalInformation' => $request['AdditionalInformation'],
+            //     'School' => $request['School'],
+            // ], [
+            //     'id' => $candidate->id,
+            // ]);
 
             return view('candidate.index', [
                 'user' => $user
             ]);
-
             
         } catch (\Throwable $th) {
-            echo "Personne ".$personne;
-
             return redirect()->back()->with('error', $th->getMessage());
         }
     }

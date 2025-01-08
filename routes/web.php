@@ -18,19 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
-// Route::get('/access-denied', function () {
-//     return view('denied.show');
-// })->name('access-denied');
+Route::get('/access-denied', function () {
+     return view('denied.show');
+ })->name('access-denied');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     
-    // Route::get("/", [CandidateController::class, 'index'])->name('candidate');
-    // Route::post("/add", [CandidateController::class, 'store'])->name('candidate.store');
-
-    Route::resource('candidate', CandidateController::class)->only([
-        'index', 'show', 'store', 'update',
-    ]);
-
+    Route::get("/", [CandidateController::class, 'index'])->name('candidate.index');
+    Route::post("/store", [CandidateController::class, 'store'])->name('candidate.store');
+   
     //Route::get("candidate", [RouteController::class, 'routes'])->name('candidate');
 });
 

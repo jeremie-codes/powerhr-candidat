@@ -11,34 +11,34 @@
                 <div class="!px-10 !py-12 card-body">
 
                     <div class="text-center">
-                        <h4 class="mb-2 text-purple-500 dark:text-purple-500">Welcome !</h4>
-                        <p class="text-slate-500 dark:text-zink-200">Sign Up to continue to Tailwick.</p>
+                        <h4 class="mb-2 text-purple-500 dark:text-purple-500">{{ __('t-welcome') }} !</h4>
+                        <p class="text-slate-500 dark:text-zink-200">{{__('t-sign-in-to-continue')}} {{config('app.name')}}</p>
                     </div>
                     <div>
                         <form method="POST" action="{{ route('register') }}" class="mt-10">
                             @csrf
                             <div class="mb-3">
-                                <x-label for="name" value="{{ __('Name') }}" />
+                                <x-label for="name" value="{{ __('t-name') }}" />
                                 <x-input id="name" type="text" name="name" :value="old('name')" required autofocus
-                                    autocomplete="name" placeholder="Enter name" />
+                                    autocomplete="name" placeholder="Entrer votre nom" />
                                 <x-input-error for="name" />
                             </div>
                             <div class="mb-3">
-                                <x-label for="email" value="{{ __('Email') }}" />
+                                <x-label for="email" value="{{ __('t-email') }}" />
                                 <x-input id="email" type="email" name="email" :value="old('email')" required
-                                    autocomplete="username" placeholder="Enter valid email" />
+                                    autocomplete="username" placeholder="Entrer votre email valide" />
                                 <x-input-error for="email" />
                             </div>
                             <div class="mb-3">
-                                <x-label for="password" value="{{ __('Password') }}" />
+                                <x-label for="password" value="{{ __('t-password') }}" />
                                 <x-input id="password" type="password" name="password" required autocomplete="new-password"
-                                    placeholder="Enter password" />
+                                    placeholder="Entrer votre mot de passe" />
                                 <x-input-error for="password" />
                             </div>
                             <div class="mb-3">
-                                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                                <x-label for="password_confirmation" value="{{ __('t-confirm-password') }}" />
                                 <x-input id="password_confirmation" type="password" name="password_confirmation" required
-                                    autocomplete="new-password" placeholder="Enter confirm password" />
+                                    autocomplete="new-password" placeholder="Confirmer votre mot de passe" />
                             </div>
                             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                                 <div class="mt-4">
@@ -47,18 +47,18 @@
                                             <x-checkbox name="terms" id="terms" required />
 
                                             <div class="ms-2">
-                                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                                {!! __('Je suis d\'accord avec le :terms_of_service et :privacy_policy', [
                                                     'terms_of_service' =>
                                                         '<a target="_blank" href="' .
                                                         route('terms.show') .
                                                         '" class="underline text-sm text-gray-600 dark:text-slate-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
-                                                        __('Terms of Service') .
+                                                        __('t-terms-of-service') .
                                                         '</a>',
                                                     'privacy_policy' =>
                                                         '<a target="_blank" href="' .
                                                         route('policy.show') .
                                                         '" class="underline text-sm text-gray-600 dark:text-slate-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
-                                                        __('Privacy Policy') .
+                                                        __('t-privacy-policy') .
                                                         '</a>',
                                                 ]) !!}
                                             </div>
@@ -68,23 +68,14 @@
                             @endif
                             <div class="mt-5">
                                 <button type="submit"
-                                    class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Sign
-                                    In</button>
+                                    class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Creer son compte</button>
                             </div>
                         </form>
-                        <div
-                            class="relative text-center my-9 before:absolute before:top-3 before:left-0 before:right-0 before:border-t before:border-t-slate-200 dark:before:border-t-zink-500">
-                            <h5
-                                class="inline-block px-4 py-0.5 text-sm bg-white text-slate-500 dark:bg-zink-700 dark:text-zink-200 rounded relative">
-                                Create account with</h5>
-                        </div>
-
-                        <x-social-login />
 
                         <div class="mt-10 text-center">
-                            <p class="mb-0 text-slate-500 dark:text-zink-200">Already have an account ? <a
+                            <p class="mb-0 text-slate-500 dark:text-zink-200">Vous avez déjà un compte ? <a
                                     href="{{ route('login') }}"
-                                    class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">Login</a>
+                                    class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">Se connecter</a>
                             </p>
                         </div>
                     </div>
@@ -95,15 +86,12 @@
                     <div class="flex items-center justify-between gap-3">
                         <div class="grow">
                             <a href="{{ url('index') }}">
-                                <x-application-logo />
+                                <x-application-logo class="block h-12 w-auto"/>
                             </a>
-                        </div>
-                        <div class="shrink-0">
-                            <x-language />
                         </div>
                     </div>
                     <div class="mt-auto">
-                        <img src="{{ URL::asset('build/images/auth/img-01.png') }}" alt=""
+                        <img src="{{ URL::asset('build/images/auth/login-image.png') }}" alt=""
                             class="md:max-w-[32rem] mx-auto">
                     </div>
                 </div>

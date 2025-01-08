@@ -31,8 +31,8 @@
                                 {{ $user->name }} </p>
                             <p class="text-slate-500 dark:text-zink-200"><i data-lucide="map-pin"
                                     class="inline-block size-4 ltr:mr-1 rtl:ml-1 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-500"></i>
-                                @if ($user->profile->location != '')
-                                    {{ $user->profile->location }}
+                                @if ($user->profile?->location != '')
+                                    {{ $user->profile?->location }}
                                 @else
                                     {{ __('t-location') }}
                                 @endif
@@ -40,23 +40,23 @@
                         </div>
 
                         <p class="mt-4 text-slate-500 dark:text-zink-200">
-                            @if ($user->profile->bio != '')
-                                {{ $user->profile->bio }}
+                            @if ($user->profile?->bio != '')
+                                {{ $user->profile?->bio }}
                             @else
                                 {{ __('t-overview-no-profile') }}
                             @endif
                         </p>
                         <div class="flex gap-2 mt-4">
-                            <a href="{{ $user->profile->twitter }}"
+                            <a href="{{ $user->profile?->twitter }}"
                                 class="flex items-center justify-center transition-all duration-200 ease-linear rounded size-9 text-sky-500 bg-sky-100 hover:bg-sky-200 dark:bg-sky-500/20 dark:hover:bg-sky-500/30">
                                 <i data-lucide="twitter" class="size-4"></i>
                             </a>
 
-                            <a href="{{ $user->profile->linkedin }}"
+                            <a href="{{ $user->profile?->linkedin }}"
                                 class="flex items-center justify-center transition-all duration-200 ease-linear rounded text-custom-500 bg-custom-100 size-9 hover:bg-custom-200 dark:bg-custom-500/20 dark:hover:bg-custom-500/30">
                                 <i data-lucide="linkedin" class="size-4"></i>
                             </a>
-                            <a href="{{ $user->profile->github }}"
+                            <a href="{{ $user->profile?->github }}"
                                 class="flex items-center justify-center transition-all duration-200 ease-linear rounded size-9 text-slate-500 bg-slate-100 hover:bg-slate-200 dark:bg-zink-600 dark:hover:bg-zink-500">
                                 <i data-lucide="github" class="size-4"></i>
                             </a>
@@ -144,8 +144,8 @@
                             <div class="card-body">
                                 <h6 class="mb-3 text-15">{{ __('t-bio') }}</h6>
                                 <p class="mb-2 text-slate-500 dark:text-zink-200">
-                                    @if ($user->profile->bio != '')
-                                        {{ $user->profile->bio }}
+                                    @if ($user->profile?->bio != '')
+                                        {{ $user->profile?->bio }}
                                     @else
                                         {{ __('t-overview-no-profile') }}
                                     @endif
@@ -165,68 +165,68 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="mb-4 text-15">{{ __('t-personnal-informations') }}</h6>
-                                <div class="overflow-x-auto">
-                                    <table class="w-full ltr:text-left rtl:ext-right">
-                                        <tbody>
-                                            <tr>
-                                                <th class="py-2 font-semibold ps-0" scope="row">Designation</th>
-                                                <td class="py-2 text-right text-slate-500 dark:text-zink-200">
-                                                    @if ($user->profile->title != '')
-                                                        {{ $user->profile->title }}
-                                                    @else
-                                                        {{ __('t-no-infomation') }}
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="py-2 font-semibold ps-0" scope="row">Phone No</th>
-                                                <td class="py-2 text-right text-slate-500 dark:text-zink-200">
-                                                    @if ($user->personne->telephone != '')
-                                                        {{ $user->personne->telephone }}
-                                                    @else
-                                                        {{ __('t-no-infomation') }}
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="py-2 font-semibold ps-0" scope="row">Birth of Date</th>
-                                                <td class="py-2 text-right text-slate-500 dark:text-zink-200">
-                                                    @if ($user->personne->dateNaissance != '2007-02-25')
-                                                        {{ $user->personne->dateNaissance }}
-                                                    @else
-                                                        {{ __('t-no-infomation') }}
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="py-2 font-semibold ps-0" scope="row">Website</th>
-                                                <td class="py-2 text-right text-slate-500 dark:text-zink-200">
-                                                    @if ($user->profile->website != '')
-                                                        <a href="{{ $user->profile->website }}" target="_blank"
-                                                            class="text-custom-500">{{ $user->profile->website }}</a>
-                                                    @else
-                                                        {{ __('t-no-infomation') }}
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="py-2 font-semibold ps-0" scope="row">Email</th>
-                                                <td class="py-2 text-right text-slate-500 dark:text-zink-200">
-                                                    {{ $user->email }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="py-2 font-semibold ps-0" scope="row">Location</th>
-                                                <td class="py-2 text-right text-slate-500 dark:text-zink-200">
-                                                    @if ($user->profile->location != '')
-                                                        {{ $user->profile->location }}
-                                                    @else
-                                                        {{ __('t-no-infomation') }}
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full ltr:text-left rtl:ext-right">
+                                    <tbody>
+                                        <tr>
+                                            <th class="py-2 font-semibold ps-0" scope="row">Designation</th>
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">
+                                                @if ($user->profile?->title != '')
+                                                    {{ $user->profile?->title }}
+                                                @else
+                                                    {{ __('t-no-infomation') }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="py-2 font-semibold ps-0" scope="row">Phone No</th>
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">
+                                                @if ($user->personne?->telephone != '')
+                                                    {{ $user->personne?->telephone }}
+                                                @else
+                                                    {{ __('t-no-infomation') }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="py-2 font-semibold ps-0" scope="row">Birth of Date</th>
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">
+                                                @if ($user->personne?->dateNaissance != '2007-02-25')
+                                                    {{ $user->personne?->dateNaissance }}
+                                                @else
+                                                    {{ __('t-no-infomation') }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="py-2 font-semibold ps-0" scope="row">Website</th>
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">
+                                                @if ($user->profile?->website != '')
+                                                    <a href="{{ $user->profile?->website }}" target="_blank"
+                                                        class="text-custom-500">{{ $user->profile?->website }}</a>
+                                                @else
+                                                    {{ __('t-no-infomation') }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="py-2 font-semibold ps-0" scope="row">Email</th>
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">
+                                                {{ $user->email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="py-2 font-semibold ps-0" scope="row">Location</th>
+                                            <td class="py-2 text-right text-slate-500 dark:text-zink-200">
+                                                @if ($user->profile?->location != '')
+                                                    {{ $user->profile?->location }}
+                                                @else
+                                                    {{ __('t-no-infomation') }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div><!--end card-->
                     <div class="card">
@@ -238,111 +238,96 @@
             <div class="overflow-x-auto">
                 <div class="card">
                     <div class="card-body">
-                            <form action="{{ route('candidate.store') }}" method="POST">
-                                @csrf
-                                <div class="grid grid-cols-1 gap-x-5 md:grid-cols-2 xl:grid-cols-2">
-                                    <div class="mb-4">
-                                        <label for="firstNameInput2"
-                                            class="inline-block mb-2 text-base font-medium">Prenom
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="text" name="prenom"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Enter First Name" 
-
-                                            @if ($user->personne->prenom != '')
-                                                value="{{ $user->personne->prenom }}"
-                                            @endif
-                                            
-                                            required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Nom
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="text" name="nom"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Enter First Name" 
-                                            @if ($user->personne->prenom != '')
-                                            value="{{ $user->personne->nom }}"
-                                        @endif
+                        <form action="{{ route('candidate.store') }}" method="POST">
+                            @csrf
+                            <div class="grid grid-cols-1 gap-x-5 md:grid-cols-2 xl:grid-cols-2">
+                                <div class="mb-4">
+                                    <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Prenom
+                                        <span class="text-red-500">*</span></label>
+                                    <input type="text" name="prenom"
+                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        placeholder="Enter First Name"
+                                        @if ($user->personne?->prenom != '') value="{{ $user->personne?->prenom }}" @endif
                                         required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="lastNameInput2"
-                                            class="inline-block mb-2 text-base font-medium">Postnom
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="text" name="postNom"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Enter Last Name" @if ($user->personne->prenom != '')
-                                            value="{{ $user->personne->postNom }}"
-                                        @endif
-                                            required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="UsernameInput" class="inline-block mb-2 text-base font-medium">Mobile
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="text" name="telephone"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="Enter your phone number"
-                                            @if ($user->personne->telephone != '')
-                                            value="{{ $user->personne->telephone }}" 
-                                        @endif
-                                        
-                                        required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="cityInput" class="inline-block mb-2 text-base font-medium">Email <span
-                                                class="text-red-500">*</span></label>
-                                        <input type="text" name="email"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            value="{{ $user->email }}" required disabled>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="stateInput"
-                                            class="inline-block mb-2 text-base font-medium">Experiences
-                                            <span class="text-red-500">*</span></label>
-                                        <select
-                                            class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            name="experiences">
-                                            <option selected="" disabled="" value="">Choisisez...</option>
-                                            <option>1 an</option>
-                                            <option>2 ans</option>
-                                            <option>3 ans</option>
-                                            <option>4 ans</option>
-                                            <option>5 ans</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="zipInput" class="inline-block mb-2 text-base font-medium">Expected
-                                            salary
-                                            <span class="text-red-500">*</span></label>
-                                        <input type="number" name="salary"
-                                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            placeholder="Enter your salary"  @if ($user->profile->salary != '')
-                                            value="{{ $user->profile->salary }}" 
-                                        @endif
-                                        
-                                        required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="stateInput" class="inline-block mb-2 text-base font-medium">Highest
-                                            Qualification Held <span class="text-red-500">*</span></label>
-                                        <select
-                                            class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                            name="qualification">
-                                            <option selected="" disabled="" value="">Choisisez...</option>
-                                            <option>Certificat primaire</option>
-                                            <option>Diplome d'Etat</option>
-                                            <option>Diplome de graduat</option>
-                                            <option>Diplome de Licence</option>
-                                            <option>Diplome de Doctorat</option>
-                                        </select>
-                                    </div>
                                 </div>
-                                <div class="flex justify-end gap-2">
-                                    <button type="submit"
-                                        class="text-white transition-all duration-200 ease-linear btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100">Mettre
-                                        a jour</button>
+                                <div class="mb-4">
+                                    <label for="firstNameInput2" class="inline-block mb-2 text-base font-medium">Nom
+                                        <span class="text-red-500">*</span></label>
+                                    <input type="text" name="nom"
+                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        placeholder="Enter First Name"
+                                        @if ($user->personne?->nom != '') value="{{ $user->personne?->nom }}" @endif
+                                        required>
                                 </div>
-                            </form>
+                                <div class="mb-4">
+                                    <label for="lastNameInput2" class="inline-block mb-2 text-base font-medium">Postnom
+                                        <span class="text-red-500">*</span></label>
+                                    <input type="text" name="postNom"
+                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        placeholder="Enter Last Name"
+                                        @if ($user->personne?->postNom != '') value="{{ $user->personne?->postNom }}" @endif
+                                        required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="UsernameInput" class="inline-block mb-2 text-base font-medium">Mobile
+                                        <span class="text-red-500">*</span></label>
+                                    <input type="text" name="telephone"
+                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        placeholder="Enter your phone number"
+                                        @if ($user->personne?->telephone != '') value="{{ $user->personne?->telephone }}" @endif
+                                        required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="cityInput" class="inline-block mb-2 text-base font-medium">Email <span
+                                            class="text-red-500">*</span></label>
+                                    <input type="text" name="email"
+                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        value="{{ $user->email }}" required disabled>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="stateInput" class="inline-block mb-2 text-base font-medium">Experiences
+                                        <span class="text-red-500">*</span></label>
+                                    <select
+                                        class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        name="experiences">
+                                        <option selected="" disabled="" value="">Choisisez...</option>
+                                        <option>1 an</option>
+                                        <option>2 ans</option>
+                                        <option>3 ans</option>
+                                        <option>4 ans</option>
+                                        <option>5 ans</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="zipInput" class="inline-block mb-2 text-base font-medium">Expected
+                                        salary
+                                        <span class="text-red-500">*</span></label>
+                                    <input type="number" name="salary"
+                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        placeholder="Enter your salary"
+                                        @if ($user->profile?->salary != '') value="{{ $user->profile?->salary }}" @endif>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="stateInput" class="inline-block mb-2 text-base font-medium">Highest
+                                        Qualification Held <span class="text-red-500">*</span></label>
+                                    <select
+                                        class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        name="qualification">
+                                        <option selected="" disabled="" value="">Choisisez...</option>
+                                        <option>Certificat primaire</option>
+                                        <option>Diplome d'Etat</option>
+                                        <option>Diplome de graduat</option>
+                                        <option>Diplome de Licence</option>
+                                        <option>Diplome de Doctorat</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex justify-end gap-2">
+                                <button type="submit"
+                                    class="text-white transition-all duration-200 ease-linear btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100">Mettre
+                                    a jour</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -672,21 +657,21 @@
                     </div>
                 </div>
             </div>
-            
+
         </div><!--end tab pane-->
 
         @if (Session::has('alert.sweetalert'))
-    <script>
-        Swal.fire({!! Session::pull('alert.sweetalert') !!});
-    </script>
-@endif
-@endsection
-@push('scripts')
-    <!-- apexcharts js -->
-    <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-    <script src="{{ URL::asset('build/js/pages/pages-account.init.js') }}"></script>
+            <script>
+                Swal.fire({!! Session::pull('alert.sweetalert') !!});
+            </script>
+        @endif
+    @endsection
+    @push('scripts')
+        <!-- apexcharts js -->
+        <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
+        <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
+        <script src="{{ URL::asset('build/js/pages/pages-account.init.js') }}"></script>
 
-    <!-- App js -->
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
-@endpush
+        <!-- App js -->
+        <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    @endpush

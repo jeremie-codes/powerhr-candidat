@@ -42,43 +42,8 @@
                             class="inline-flex justify-center items-center p-0 text-topbar-item transition-all w-[37.5px] h-[37.5px] duration-200 ease-linear bg-topbar rounded-md dropdown-toggle btn hover:bg-topbar-item-bg-hover hover:text-topbar-item-hover group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=dark]:dark:text-zink-500 group-data-[topbar=dark]:dark:hover:text-zink-50"
                             id="flagsDropdown" data-bs-toggle="dropdown">
                             @switch(Session::get('lang'))
-                                @case('ru')
-                                    <img src="{{ URL::asset('build/images/flags/20/ru.svg') }}" alt=""
-                                        id="header-lang-img" class="h-5 rounded-sm">
-                                @break
-
-                                @case('it')
-                                    <img src="{{ URL::asset('build/images/flags/20/it.svg') }}" alt=""
-                                        id="header-lang-img" class="h-5 rounded-sm">
-                                @break
-
-                                @case('sp')
-                                    <img src="{{ URL::asset('build/images/flags/20/es.svg') }}" alt=""
-                                        id="header-lang-img" class="h-5 rounded-sm">
-                                @break
-
-                                @case('ch')
-                                    <img src="{{ URL::asset('build/images/flags/20/china.svg') }}" alt=""
-                                        id="header-lang-img" class="h-5 rounded-sm">
-                                @break
-
                                 @case('fr')
                                     <img src="{{ URL::asset('build/images/flags/20/fr.svg') }}" alt=""
-                                        id="header-lang-img" class="h-5 rounded-sm">
-                                @break
-
-                                @case('gr')
-                                    <img src="{{ URL::asset('build/images/flags/20/de.svg') }}" alt=""
-                                        id="header-lang-img" class="h-5 rounded-sm">
-                                @break
-
-                                @case('ar')
-                                    <img src="{{ URL::asset('build/images/flags/20/ae.svg') }}" alt=""
-                                        id="header-lang-img" class="h-5 rounded-sm">
-                                @break
-
-                                @case('jp')
-                                    <img src="{{ URL::asset('build/images/flags/20/jp.svg') }}" alt=""
                                         id="header-lang-img" class="h-5 rounded-sm">
                                 @break
 
@@ -89,77 +54,22 @@
                         </button>
                         <div class="absolute z-50 hidden p-4 ltr:text-left rtl:text-right bg-white rounded-md shadow-md !top-4 dropdown-menu min-w-[10rem] flex flex-col gap-4 dark:bg-zink-600"
                             aria-labelledby="flagsDropdown">
-                            <a href="{{ url('index/en') }}" class="flex items-center gap-3 group/items language" data-lang="en"
-                                title="English">
+                            <a href="{{ url('index/en') }}" class="flex items-center gap-3 group/items language"
+                                data-lang="en" title="English">
                                 <img src="{{ URL::asset('build/images/flags/20/us.svg') }}" alt=""
                                     class="object-cover h-4 rounded-full">
                                 <h6
                                     class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">
                                     English</h6>
                             </a>
-                            <a href="{{ url('index/sp') }}" class="flex items-center gap-3 group/items language" data-lang="sp"
-                                title="Spanish">
-                                <img src="{{ URL::asset('build/images/flags/20/es.svg') }}" alt=""
-                                    class="object-cover h-4 rounded-full">
-                                <h6
-                                    class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">
-                                    Spanish</h6>
-                            </a>
-                            <a href="{{ url('index/gr') }}" class="flex items-center gap-3 group/items language" data-lang="gr"
-                                title="German">
-                                <img src="{{ URL::asset('build/images/flags/20/de.svg') }}" alt=""
-                                    class="object-cover h-4 rounded-full">
-                                <h6
-                                    class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">
-                                    German</h6>
-                            </a>
-                            <a href="{{ url('index/fr') }}" class="flex items-center gap-3 group/items language" data-lang="fr"
-                                title="French">
+
+                            <a href="{{ url('index/fr') }}" class="flex items-center gap-3 group/items language"
+                                data-lang="fr" title="French">
                                 <img src="{{ URL::asset('build/images/flags/20/fr.svg') }}" alt=""
                                     class="object-cover h-4 rounded-full">
                                 <h6
                                     class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">
                                     French</h6>
-                            </a>
-                            <a href="{{ url('index/jp') }}" class="flex items-center gap-3 group/items language" data-lang="jp"
-                                title="Japanese">
-                                <img src="{{ URL::asset('build/images/flags/20/jp.svg') }}" alt=""
-                                    class="object-cover h-4 rounded-full">
-                                <h6
-                                    class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">
-                                    Japanese</h6>
-                            </a>
-                            <a href="{{ url('index/ch') }}" class="flex items-center gap-3 group/items language" data-lang="ch"
-                                title="Chinese">
-                                <img src="{{ URL::asset('build/images/flags/20/china.svg') }}" alt=""
-                                    class="object-cover h-4 rounded-full">
-                                <h6
-                                    class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">
-                                    Chinese</h6>
-                            </a>
-                            <a href="{{ url('index/it') }}" class="flex items-center gap-3 group/items language" data-lang="it"
-                                title="Italian">
-                                <img src="{{ URL::asset('build/images/flags/20/it.svg') }}" alt=""
-                                    class="object-cover h-4 rounded-full">
-                                <h6
-                                    class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">
-                                    Italian</h6>
-                            </a>
-                            <a href="{{ url('index/ru') }}" class="flex items-center gap-3 group/items language" data-lang="ru"
-                                title="Russian">
-                                <img src="{{ URL::asset('build/images/flags/20/ru.svg') }}" alt=""
-                                    class="object-cover h-4 rounded-full">
-                                <h6
-                                    class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">
-                                    Russian</h6>
-                            </a>
-                            <a href="{{ url('index/ar') }}" class="flex items-center gap-3 group/items language" data-lang="ar"
-                                title="Arabic">
-                                <img src="{{ URL::asset('build/images/flags/20/ae.svg') }}" alt=""
-                                    class="object-cover h-4 rounded-full">
-                                <h6
-                                    class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">
-                                    Arabic</h6>
                             </a>
                         </div>
                     </div>
@@ -172,7 +82,7 @@
                                 class="inline-block w-5 h-5 stroke-1 fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
                         </button>
                     </div>
-                   
+
                     <div class="relative flex items-center dropdown h-header">
                         <button type="button"
                             class="inline-block p-0 transition-all duration-200 ease-linear bg-topbar rounded-full text-topbar-item dropdown-toggle btn hover:bg-topbar-item-bg-hover hover:text-topbar-item-hover group-data-[topbar=dark]:text-topbar-item-dark group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:hover:text-zink-50 group-data-[topbar=dark]:dark:text-zink-200"
@@ -279,7 +189,8 @@
                         </a>
                         <div class="flex items-center mb-3">
                             <h5 class="text-base product-price"> $<span>155.32</span></h5>
-                            <div class="font-normal rtl:mr-1 ltr:ml-1 text-slate-500 dark:text-zink-200">(Fashion)</div>
+                            <div class="font-normal rtl:mr-1 ltr:ml-1 text-slate-500 dark:text-zink-200">(Fashion)
+                            </div>
                         </div>
                         <div class="flex items-center justify-between gap-3">
                             <div class="inline-flex text-center input-step">
@@ -314,7 +225,8 @@
                         </a>
                         <div class="flex items-center mb-3">
                             <h5 class="text-base product-price"> $<span>349.95</span></h5>
-                            <div class="font-normal rtl:mr-1 ltr:ml-1 text-slate-400 dark:text-zink-200">(Luggage)</div>
+                            <div class="font-normal rtl:mr-1 ltr:ml-1 text-slate-400 dark:text-zink-200">(Luggage)
+                            </div>
                         </div>
                         <div class="flex items-center justify-between gap-3">
                             <div class="inline-flex text-center input-step">
@@ -349,7 +261,8 @@
                         </a>
                         <div class="flex items-center mb-3">
                             <h5 class="text-base product-price">$<span>546.74</span></h5>
-                            <div class="font-normal rtl:mr-1 ltr:ml-1 text-slate-400 dark:text-zink-200">(Fashion)</div>
+                            <div class="font-normal rtl:mr-1 ltr:ml-1 text-slate-400 dark:text-zink-200">(Fashion)
+                            </div>
                         </div>
                         <div class="flex items-center justify-between gap-3">
                             <div class="inline-flex text-center input-step">
