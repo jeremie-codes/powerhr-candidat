@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{{ asset('build/images/logo.png') }}">
 
-    <link rel="shortcut icon" href="{{ URL::asset('images/favicon/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ URL::asset('build/images/favicon.png') }}">
 
     @include('layouts.head-css')
     <!-- Styles -->
