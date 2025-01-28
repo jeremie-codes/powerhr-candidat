@@ -115,6 +115,8 @@ class RouteController extends Controller
         ]);
     }
 
+    
+
     public function routes(Request $request) {
         if(view()->exists($request->path())) {
             return view($request->path());

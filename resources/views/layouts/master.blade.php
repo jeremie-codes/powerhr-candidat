@@ -63,7 +63,7 @@
 @stack('modals')
 @include('layouts.customizer')
 @include('layouts.vendor-scripts')
-
+ 
 @livewireScripts
 </body>
 

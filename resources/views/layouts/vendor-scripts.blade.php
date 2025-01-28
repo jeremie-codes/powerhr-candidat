@@ -5,4 +5,7 @@
 <script src="{{ URL::asset('build/libs/prismjs/prism.js') }}"></script>
 <script src="{{ URL::asset('build/libs/lucide/umd/lucide.js') }}"></script>
 <script src="{{ URL::asset('build/js/tailwick.bundle.js') }}"></script>
+
+<script src="{{ URL::asset('build/js/pages/invoice-create.init.js') }}"></script>
+<script src="{{ URL::asset('build/js/app.js') }}"></script>
 @stack('scripts')

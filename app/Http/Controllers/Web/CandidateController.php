@@ -35,6 +35,20 @@ class CandidateController extends Controller
         ]);
     }
 
+    public function candidature()
+    {
+        // $user = User::with('candidates', 'profile', 'personne')->findOrFail(Auth::user()->id);
+        
+        return view('candidate.candidature');
+    }
+
+    public function offre()
+    {
+        $user = User::with('candidates', 'profile', 'personne')->findOrFail(Auth::user()->id);
+        
+        return view('candidate.offre', compact('user'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
