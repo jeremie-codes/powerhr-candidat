@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Candidates;
 use App\Models\User;
+use App\Models\Job;
+use App\Models\JobUser;
 use App\Models\Personne;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -40,13 +42,6 @@ class CandidateController extends Controller
         // $user = User::with('candidates', 'profile', 'personne')->findOrFail(Auth::user()->id);
         
         return view('candidate.candidature');
-    }
-
-    public function offre()
-    {
-        $user = User::with('candidates', 'profile', 'personne')->findOrFail(Auth::user()->id);
-        
-        return view('candidate.offre', compact('user'));
     }
 
     /**

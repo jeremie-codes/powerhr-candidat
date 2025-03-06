@@ -522,8 +522,8 @@ class ComposerStaticInit1c09e200138f1411e46dbd34015f72db
         ),
         'League\\Uri\\' => 
         array (
-            0 => __DIR__ . '/..' . '/league/uri-interfaces',
-            1 => __DIR__ . '/..' . '/league/uri',
+            0 => __DIR__ . '/..' . '/league/uri',
+            1 => __DIR__ . '/..' . '/league/uri-interfaces',
         ),
         'League\\MimeTypeDetection\\' => 
         array (
@@ -829,6 +829,7 @@ class ComposerStaticInit1c09e200138f1411e46dbd34015f72db
         'App\\Http\\Controllers\\RouteController' => __DIR__ . '/../..' . '/app/Http/Controllers/RouteController.php',
         'App\\Http\\Controllers\\TailwickController' => __DIR__ . '/../..' . '/app/Http/Controllers/TailwickController.php',
         'App\\Http\\Controllers\\Web\\CandidateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Web/CandidateController.php',
+        'App\\Http\\Controllers\\Web\\GenerateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Web/GenerateController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -863,6 +864,7 @@ class ComposerStaticInit1c09e200138f1411e46dbd34015f72db
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
+        'App\\Providers\\Filament\\AdminPanelProvider' => __DIR__ . '/../..' . '/app/Providers/Filament/AdminPanelProvider.php',
         'App\\Providers\\FortifyServiceProvider' => __DIR__ . '/../..' . '/app/Providers/FortifyServiceProvider.php',
         'App\\Providers\\JetstreamServiceProvider' => __DIR__ . '/../..' . '/app/Providers/JetstreamServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',

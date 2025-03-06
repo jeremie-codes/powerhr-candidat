@@ -52,10 +52,10 @@
                 <div class="card-body">
                     <div class="grid grid-cols-1 gap-4 mb-5 lg:grid-cols-2 xl:grid-cols-12">
                         <div class="xl:col-span-3">
-                            <div class="relative">
+                            <div class="relative grow">
                                 <input type="text"
                                     class="ltr:pl-8 rtl:pr-8 search form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                    placeholder="Search for ..." autocomplete="off">
+                                    placeholder="Rechercher ..." autocomplete="off">
                                 <i data-lucide="search"
                                     class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600"></i>
                             </div>
@@ -78,30 +78,30 @@
                         </div>
                     </div><!--end grid-->
                     <div class="overflow-x-auto">
-                        <table class="w-full whitespace-nowrap">
-                            <thead
-                                class="ltr:text-left rtl:text-right bg-slate-100 text-slate-500 dark:text-zink-200 dark:bg-zink-600">
+                    <table class="w-full whitespace-nowrap table-strepped" id="productTable">
+                            <thead 
+                                class="ltr:text-left rtl:text-right bg-slate-100 text-slate-500 dark:text-zink-200 dark:bg-zink-600 w-full whitespace-nowra table-strepped" id="productTable">
                                 <tr>
-                                    <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">
+                                    <th data-sort="product_date" class="px-3.5 py-2.5 font-semibold product_date border-b border-slate-200 dark:border-zink-500">
                                         Date</th>
-                                    <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">
+                                    <th data-sort="product_name" class="px-3.5 py-2.5 font-semibold  product_name border-b border-slate-200 dark:border-zink-500">
                                         Candidature</th>
-                                    <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">
+                                    <th data-sort="product_city" class="product_city px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">
                                         Lieu d'affectation</th>
-                                    <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">
+                                    <th data-sort="product_state" class="product_state px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">
                                         État</th>
                                     <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">
                                         Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="list">
                                 <tr>
-                                    <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
+                                    <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 product_date">
                                         13 Oct, 2024 <span
                                             class="px-2.5 py-0.5 text-xs inline-block font-medium rounded border bg-white border-slate-400 text-slate-500 dark:bg-zink-700 dark:border-zink-400 dark:text-zink-200 ltr:ml-1 rtl:mr-1 align-middle">Fri</span>
                                     </td>
-                                    <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">Chargé de relation public</td>
-                                    <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">Kinshasa</td>
+                                    <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 product_name">Chargé de relation public</td>
+                                    <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 product_city">Kinshasa</td>
                                     <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
                                         <div class="">
                                             <a href="#!"
@@ -216,7 +216,14 @@
         </div><!--end col-->
     </div><!--end grid-->
 @endsection
+
 @push('scripts')
+    <!-- list js-->
+    <script src="{{ URL::asset('build/libs/list.js/list.min.js') }}"></script>
+
+    <!--social event init-->
+    <script src="{{ URL::asset('build/js/pages/apps-social-event.init.js') }}"></script>
+
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endpush

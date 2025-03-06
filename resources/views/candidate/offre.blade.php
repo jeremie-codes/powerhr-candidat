@@ -1,10 +1,10 @@
 @extends('layouts.candidate.master')
 @section('title')
-    {{ __('Event') }}
+    {{ __('Jobs') }}
 @endsection
 @section('content')
     <!-- page title -->
-    <x-page-title title="Offres" pagetitle="Tableau de board" />
+    <x-page-title title="Liste d'offres" pagetitle="Tableau de board" />
 
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5">
         <div class="xl:col-span-3">
@@ -27,23 +27,19 @@
                 <div class="card-body">
                     <ul class="flex flex-col w-full gap-2 mb-4 text-sm font-medium shrink-0 nav-tabs">
                         <li class="group grow">
-                            <a href="{{ url('offres?filter=*') }}"
+                            <a href="{{ url('jobs?filter=*') }}"
                                 class="inline-block px-4 w-full py-2 text-base transition-all duration-300 ease-linear rounded-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:bg-custom-500 dark:group-[.active]:bg-custom-500 group-[.active]:text-white dark:group-[.active]:text-white hover:text-custom-500 dark:hover:text-custom-500 active:text-custom-500 dark:active:text-custom-500 -mb-[1px]"><i
                                     data-lucide="briefcase" class="inline-block size-4 align-middle ltr:mr-1 rtl:ml-1"></i>
                                 <span class="align-middle">Tous</span></a>
                         </li>
+                        @foreach ($categories as $category)
                         <li class="group grow">
-                            <a href="{{ url('offres?filter=Relation%public') }}"
+                            <a href="{{ url('jobs?filter='. $category->category->name) }}"
                                 class="inline-block px-4 w-full py-2 text-base transition-all duration-300 ease-linear rounded-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:bg-custom-500 dark:group-[.active]:bg-custom-500 group-[.active]:text-white dark:group-[.active]:text-white hover:text-custom-500 dark:hover:text-custom-500 active:text-custom-500 dark:active:text-custom-500 -mb-[1px]"><i
                                     data-lucide="airplay" class="inline-block size-4 align-middle ltr:mr-1 rtl:ml-1"></i>
-                                <span class="align-middle">Relation public</span></a>
+                                <span class="align-middle">{{ $category->category->name }}</span></a>
                         </li>
-                        <li class="group grow">
-                            <a href="{{ url('offres?filter=Informatique') }}"
-                                class="inline-block px-4 w-full py-2 text-base transition-all duration-300 ease-linear rounded-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:bg-custom-500 dark:group-[.active]:bg-custom-500 group-[.active]:text-white dark:group-[.active]:text-white hover:text-custom-500 dark:hover:text-custom-500 active:text-custom-500 dark:active:text-custom-500 -mb-[1px]"><i
-                                    data-lucide="airplay" class="inline-block size-4 align-middle ltr:mr-1 rtl:ml-1"></i>
-                                <span class="align-middle">Informatique</span></a>
-                        </li>
+                        @endforeach
                     </ul>
 
                 </div>
@@ -71,94 +67,114 @@
                     mainteneant !</a>
             </div>
             <div class="overflow-x-auto">
-                <table class="w-full border-separate table-custom border-spacing-y-2 whitespace-nowrap">
-                    <thead class="ltr:text-left rtl:text-right">
-                        <tr
-                            class="relative bg-white rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent dark:bg-zink-700">
-                            <th class="px-3.5 py-2.5 font-semibold sort" data-sort="event_name">Titre de l'offre</th>
-                            <th class="px-3.5 py-2.5 font-semibold sort" data-sort="start_date">Date publiée</th>
-                            <th class="px-3.5 py-2.5 font-semibold sort" data-sort="end_date">Date expiration</th>
-                            <th class="px-3.5 py-2.5 font-semibold sort" data-sort="number">Lieu d'affectation</th>
-                            <th class="px-3.5 py-2.5 font-semibold sort" data-sort="status">Status</th>
-                            <th class="px-3.5 py-2.5 font-semibold">Action</th>
+                <table class="w-full whitespace-nowrap" id="productTable">
+                    <thead class="ltr:text-left rtl:text-right bg-slate-100 dark:bg-zink-600">
+                        <tr>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500 sort product_code"
+                                data-sort="product_code">
+                                Matricule
+                            </th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500 sort product_name"
+                                data-sort="product_name">
+                                {{ __('t-job-name') }}
+                            </th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500 sort category"
+                                data-sort="category">
+                                {{ __('t-location') }}
+                            </th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500 sort category"
+                                data-sort="category">
+                                {{ __('t-category') }}
+                            </th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500 sort price"
+                                data-sort="price">
+                                {{ __('t-salary') }}
+                            </th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500 sort status"
+                                data-sort="status">Status</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500 sort status"
+                                data-sort="status">Action</th>
                         </tr>
                     </thead>
                     <tbody class="list">
-                        <tr
-                            class="relative bg-white rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent dark:bg-zink-700">
-                            <td class="px-3.5 py-2.5 event_name">Rélation public</td>
-                            <td class="px-3.5 py-2.5 start_date">03 Juin, 2025</td>
-                            <td class="px-3.5 py-2.5 end_date">15 Juin, 2025</td>
-                            <td class="px-3.5 py-2.5 total">Kinshasa</td>
-                            <td class="px-3.5 py-2.5"><span
-                                    class="px-2.5 py-0.5 text-xs inline-block font-medium rounded border bg-red-100 border-red-200 text-red-500 dark:bg-red-500/20 dark:border-red-500/20 status">Expiré</span>
-                            </td>
-                            <td class="px-3.5 py-2.5">
-                                <div class="relative dropdown">
-                                     <a class="items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            href="#!">
-                                            <i data-lucide="eye" class="inline-block size-3"></i>
+                        @forelse ($jobs as $job)
+                            <tr>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
+                                    <a href="{{route('jobs.show',$job->matricule)}}"
+                                        class="transition-all duration-150 ease-linear product_code text-custom-500 hover:text-custom-600">
+                                        #{{$job->matricule}}
                                     </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr
-                            class="relative bg-white rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent dark:bg-zink-700">
-                            <td class="px-3.5 py-2.5 event_name">Dévveloppeur Web</td>
-                            <td class="px-3.5 py-2.5 start_date">03 Juin, 2025</td>
-                            <td class="px-3.5 py-2.5 end_date">15 Juin, 2025</td>
-                            <td class="px-3.5 py-2.5 total">Kinshasa</td>
-                            <td class="px-3.5 py-2.5"><span
-                                    class="px-2.5 py-0.5 text-xs inline-block font-medium rounded border bg-orange-100 border-orange-200 text-orange-500 dark:bg-orange-500/20 dark:border-orange-500/20 status">En Cours</span>
-                            </td>
-                            <td class="px-3.5 py-2.5">
-                                <div class="relative dropdown">
-                                     <a class="items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            href="#!">
-                                            <i data-lucide="eye" class="inline-block size-3"></i>
+                                </td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 product_name">
+                                    <a href="{{ route('jobs.show', $job->matricule)}}" class="flex items-center gap-2">
+                                        <h6 class="product_name">
+                                            {{ $job->title }}
+                                        </h6>
                                     </a>
+                                </td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 category">
+                                    <span
+                                        class="category px-2.5 py-0.5 text-xs inline-block font-medium rounded border bg-slate-100 border-slate-200 text-slate-500 dark:bg-slate-500/20 dark:border-slate-500/20 dark:text-zink-200">
+                                        {{ $job->location }}
+                                    </span>
+                                </td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 category">
+                                    <span
+                                        class="category px-2.5 py-0.5 text-xs inline-block font-medium rounded border bg-slate-100 border-slate-200 text-slate-500 dark:bg-slate-500/20 dark:border-slate-500/20 dark:text-zink-200">
+                                        {{ $job->category->name }}
+                                    </span>
+                                </td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 price">
+                                    {{ $job->salary }}
+                                </td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 status">
+                                    @if ($job->is_open)
+                                        <span
+                                            class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent">
+                                                Open
+                                        </span>
+                                    @else
+                                       <span
+                                        class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-orange-100 border-transparent text-orange-500 dark:bg-orange-500/20 dark:border-transparent">
+                                            Closed
+                                        </span> 
+                                    @endif
+                                </td>
+                                <td class="px-3.5 py-2.5">
+                                    <div class="relative dropdown">
+                                         <a class="items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
+                                                href="{{route('jobs.show',$job->matricule)}}">
+                                                <i data-lucide="eye" class="inline-block size-3"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <div class="noresult">
+                                <div class="py-6 text-center">
+                                    <i data-lucide="search"
+                                        class="size-6 mx-auto mb-3 text-sky-500 fill-sky-100 dark:fill-sky-500/20"></i>
+                                    <h5 class="mt-2 mb-1">Sorry! No Result Found</h5>
+                                    <p class="mb-0 text-slate-500 dark:text-zink-200">We've searched more than 199+ product We did not
+                                        find any product for you search.</p>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr
-                            class="relative bg-white rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent dark:bg-zink-700">
-                            <td class="px-3.5 py-2.5 event_name">Dévveloppeur Full Stack</td>
-                            <td class="px-3.5 py-2.5 start_date">03 Juin, 2025</td>
-                            <td class="px-3.5 py-2.5 end_date">15 Juin, 2025</td>
-                            <td class="px-3.5 py-2.5 total">Lubumbashi</td>
-                            <td class="px-3.5 py-2.5"><span
-                                    class="px-2.5 py-0.5 text-xs inline-block font-medium rounded border bg-orange-100 border-orange-200 text-orange-500 dark:bg-orange-500/20 dark:border-orange-500/20 status">En Cours</span>
-                            </td>
-                            <td class="px-3.5 py-2.5">
-                                <div class="relative dropdown">
-                                     <a class="items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            href="#!">
-                                            <i data-lucide="eye" class="inline-block size-3"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
+                            </div>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
-            <div class="flex justify-center mt-3 mb-5">
-                <button type="button"
-                    class="flex items-center text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
-                    <svg class="size-4 ltr:mr-2 rtl:ml-2 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                            stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                    </svg>
-                    Load More
-                </button>
+            <div class="flex flex-col items-center gap-4 px-4 mt-4 md:flex-row" id="pagination-element">
+                <div class="grow">
+                </div>
+
+                <div class="col-sm-auto mt-sm-0">
+                    <div class="flex gap-2 pagination-wrap justify-content-center">
+                        {{$jobs->links()}}
+                    </div>
+                </div>
             </div>
         </div><!--end-->
     </div><!--end-->
-
-
 
     <div id="eventModal" modal-center
         class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show">

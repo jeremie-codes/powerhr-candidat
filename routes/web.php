@@ -3,6 +3,7 @@
 use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\Web\CandidateController;
 use App\Http\Controllers\Web\GenerateController;
+use App\Http\Controllers\Web\JobController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,12 +29,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get("/", [CandidateController::class, 'index'])->name('candidate.index');
     Route::post("/store", [CandidateController::class, 'store'])->name('candidate.store');
     Route::get("/canidatures", [CandidateController::class, 'candidature'])->name('candidature');
-    Route::get("/offres", [CandidateController::class, 'offre'])->name('offre');
+    
+    Route::get("/jobs", [JobController::class, 'index'])->name('jobs');
+    Route::get("/jobs/{matricule}", [JobController::class, 'show'])->name('jobs.show');
 
     Route::get("/generate", [GenerateController::class, 'index'])->name('generate.index');
     Route::get("/generate/{id}/cv", [GenerateController::class, 'show'])->name('generate.show');
    
-    //Route::get("candidate", [RouteController::class, 'routes'])->name('candidate');
 });
 
 
