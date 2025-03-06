@@ -3,14 +3,13 @@
         class="inline-flex items-center gap-3 transition-all duration-200 ease-linear dropdown-toggle btn border-slate-200 dark:border-zink-400/60 group/items focus:border-custom-500 dark:focus:border-custom-500"
         id="dropdownMenuButton" data-bs-toggle="dropdown">
         @switch(Session::get('lang'))
-
             @case('fr')
-                <img src="{{ URL::asset('build/images/flags/20/fr.svg') }}" alt="" id="header-lang-img"
+                <img src="{{ URL::asset('build/images/flags/20/us.svg') }}" alt="" id="header-lang-img"
                     class="object-cover h-5 rounded-full">
             @break
 
             @default
-                <img src="{{ URL::asset('build/images/flags/20/us.svg') }}" alt="" id="header-lang-img"
+                <img src="{{ URL::asset('build/images/flags/20/fr.svg') }}" alt="" id="header-lang-img"
                     class="object-cover h-5 rounded-full">
         @endswitch
         <h6
